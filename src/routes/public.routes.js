@@ -6,7 +6,11 @@ const Stack = createNativeStackNavigator();
 
 export default function PublicRoutes() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator 
+      screenOptions={{
+        headerShown:false,
+      }}
+    >
       <Stack.Screen name="SignIn" component={SignIn}/>
     </Stack.Navigator>
   );

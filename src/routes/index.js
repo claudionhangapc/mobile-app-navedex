@@ -6,7 +6,7 @@ import PrivateRoutes from './private.routes'
 export default function Routes() {
   const state = {}
 
-  state.isLoggedIn = true
+  state.isLoggedIn = false
 
   return (
     state.isLoggedIn ? <PrivateRoutes/> :  < PublicRoutes />
