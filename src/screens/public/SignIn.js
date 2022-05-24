@@ -1,12 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { StyleSheet, Text, View, TextInput, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Image, TouchableOpacity } from 'react-native';
 
 
 export default function SignIn() {
   return (
     <SafeAreaView style={styles.container}>
-      <View>
+      <View >
         <Image
           style={styles.logo}
           
@@ -16,12 +16,14 @@ export default function SignIn() {
         />
       </View>
       <View style={styles.containerChildren}>
-        <View>
-          <Text>
+        <View style={styles.textView}>
+          <Text
+            style={styles.text}
+          >
             E-mail
           </Text>
         </View>
-        <View style={styles.itemView}>
+        <View style={styles.inputView}>
           <TextInput
             style={styles.input}
             placeholder='E-mail'
@@ -29,20 +31,29 @@ export default function SignIn() {
         </View>
       </View>
       <View style={styles.containerChildren}>
-        <View>
-          <Text >
+        <View style={styles.textView}>
+          <Text  
+          style={styles.text}
+          >
             Senha
           </Text>
         </View>
-        <View style={styles.itemView}>
+        <View style={styles.inputView}>
           <TextInput
             style={styles.input}
             placeholder='Senha'
           />
         </View>
       </View>
-      <View>
-        <Button title='Entrar'/>
+      <View style={styles.buttonView}>
+        <TouchableOpacity 
+        style={styles.button}>
+          <Text 
+          style={styles.textButton}
+          >
+            Entrar
+          </Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -52,24 +63,53 @@ const styles = StyleSheet.create({
   container: {
    flex:1,
    justifyContent:'center',
-   alignItems:'center'
+   alignItems:'center',
+   padding:20
   },
   containerChildren:{
     width:'100%',
-    alignItems:'center'
+    marginBottom:32,
   },
   logo:{
     width: 300,
-    height: 40,
-    resizeMode: 'center'
+    height: 100,
+    resizeMode: 'contain',
+    marginBottom:40,
   },
-  itemView:{
-    width:'90%',
+  inputView:{
+    width:'100%',
   },
   input:{
     width:'100%',
     borderWidth:1,
     height:40,
     padding:10
+  },
+  textView:{
+    marginBottom:4,
+    textAlign:'left'
+  },
+  text:{
+    fontSize:14,
+    fontWeight:'600',
+  },
+  buttonView:{
+   width:'100%',
+   
+  },
+
+  button:{
+    backgroundColor:'#212121',
+    height:40,
+    alignItems: "center",
+    justifyContent:'center',
+    padding:8,
+    
+  },
+  textButton:{
+    color:'#FFFFFF',
+    fontSize:14,
+    fontWeight:'600',
   }
+
 });
