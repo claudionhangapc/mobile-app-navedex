@@ -15,26 +15,28 @@ export default function SignIn() {
           }
         />
       </View>
-      <View>
+      <View style={styles.containerChildren}>
         <View>
           <Text>
             E-mail
           </Text>
         </View>
-        <View>
+        <View style={styles.itemView}>
           <TextInput
+            style={styles.input}
             placeholder='E-mail'
           />
         </View>
       </View>
-      <View>
+      <View style={styles.containerChildren}>
         <View>
-          <Text>
+          <Text >
             Senha
           </Text>
         </View>
-        <View>
+        <View style={styles.itemView}>
           <TextInput
+            style={styles.input}
             placeholder='Senha'
           />
         </View>
@@ -52,9 +54,22 @@ const styles = StyleSheet.create({
    justifyContent:'center',
    alignItems:'center'
   },
+  containerChildren:{
+    width:'100%',
+    alignItems:'center'
+  },
   logo:{
     width: 300,
     height: 40,
     resizeMode: 'center'
+  },
+  itemView:{
+    width:'90%',
+  },
+  input:{
+    width:'100%',
+    borderWidth:1,
+    height:40,
+    padding:10
   }
 });
