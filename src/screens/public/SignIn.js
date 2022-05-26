@@ -45,6 +45,11 @@ export default function SignIn() {
           />
         </View>
       </View>
+      <View style={styles.errorView}>
+        <Text style={styles.errorText}>
+          Senha ou email incorreto
+        </Text>
+      </View>
       <View style={styles.buttonView}>
         <TouchableOpacity 
         style={styles.button}>
@@ -97,7 +102,16 @@ const styles = StyleSheet.create({
    width:'100%',
    
   },
-
+  errorView:{
+    width:'100%',
+    marginBottom:32,
+    backgroundColor:'#FF5252',
+    padding:8,
+    height:40,
+  },
+  errortext:{
+    color:'#212121'
+  },
   button:{
     backgroundColor:'#212121',
     height:40,
