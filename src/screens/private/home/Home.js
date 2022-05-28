@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from './home.page.style'
-
+import CardNaver from '../../../components/private/CardNaver'
 export default function Home() {
   return (
     <View style={styles.container}>
@@ -24,6 +24,14 @@ export default function Home() {
         </TouchableOpacity>
       
       </View>
+
+      <View style={{
+        flex:1,
+      }}>
+        <CardNaver/>
+        <CardNaver/>
+      </View>
+
     </View>
   );
 }

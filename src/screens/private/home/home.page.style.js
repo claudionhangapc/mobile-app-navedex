@@ -9,6 +9,7 @@ export default StyleSheet.create({
    containerChildren:{
      width:'100%',
      marginTop:32,
+     marginBottom:20,
      flexDirection:'row',
      alignItems:'center',
      justifyContent:'space-between',
