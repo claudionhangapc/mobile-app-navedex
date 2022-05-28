@@ -1,14 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
+import { IconButton, Colors } from 'react-native-paper';
 import styles from './add.page.style'
 
 export default function Home() {
   return (
     <View style={styles.container}>
-     <Text>
-       ola
-     </Text>
+      <View style={styles.containerChildren} >
+        <IconButton
+          icon="arrow-left"
+          color="#212121"
+          size={20}
+          onPress={() => console.log('Pressed')}
+          />
+        <Text style={styles.title}>
+          Adicionar Naver
+        </Text>
+     </View>
     </View>
   );
 }
