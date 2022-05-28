@@ -5,16 +5,12 @@ import styles from './home.page.style'
 
 export default function Home() {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.containerChildren}>
-      <Image
-          style={styles.logo}
-          
-          source={
-            require('../../../../assets/logo.png')
-          }
-        />
-       <TouchableOpacity 
+    <View style={styles.container}>
+      <View style={styles.containerChildren} >
+        <Text style={styles.logo}>
+          Navers
+        </Text>
+        <TouchableOpacity 
         style={styles.button}
         onPress={()=>{
           alert("voce deseja realmente sair ?")
@@ -23,11 +19,12 @@ export default function Home() {
           <Text 
           style={styles.textButton}
           >
-            Sair
+            Adicionar novo
           </Text>
         </TouchableOpacity>
+      
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 

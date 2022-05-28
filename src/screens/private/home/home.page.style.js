@@ -3,31 +3,32 @@ export default StyleSheet.create({
 
   container: {
     flex:1,
-    alignItems:'center',
-    padding:20
+    paddingLeft:20,
+    paddingRight:20,
    },
    containerChildren:{
      width:'100%',
-     marginBottom:32,
+     marginTop:32,
      flexDirection:'row',
      alignItems:'center',
      justifyContent:'space-between',
    },
    logo:{
-    width: 145,
-    height: 37,
-    resizeMode: 'contain',
+    fontWeight: '600',
+    fontSize: 30,
   },
   button:{
     height:40, 
     padding:8,
-    width:50,
+    width:176,
     alignItems: "center",
     justifyContent:'center',
+    backgroundColor:'#212121'
   },
   textButton:{
     fontSize:14,
     fontWeight:'600',
+    color:'#fff'
   }
  
 })

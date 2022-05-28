@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   button:{
-    height:40, 
     padding:8,
     width:50,
     alignItems: "center",
