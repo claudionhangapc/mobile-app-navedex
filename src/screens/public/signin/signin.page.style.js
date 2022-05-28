@@ -53,8 +53,7 @@ export default StyleSheet.create({
      height:40,
      alignItems: "center",
      justifyContent:'center',
-     padding:8,
-     
+     padding:8, 
    },
    textButton:{
      color:'#FFFFFF',
