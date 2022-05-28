@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ScrollView  } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton, Colors } from 'react-native-paper';
+import TextIpuntGeneral from '../../../components/TextIpuntGeneral'
 import styles from './add.page.style'
 
 export default function Home() {
@@ -18,6 +19,18 @@ export default function Home() {
           Adicionar Naver
         </Text>
      </View>
+     <ScrollView style={{
+       flex:1,
+     }}
+     showsVerticalScrollIndicator={false}
+     >
+       <TextIpuntGeneral label="Nome"/>
+       <TextIpuntGeneral label="Idade"/>
+       <TextIpuntGeneral label="Projetos que participou"/>
+       <TextIpuntGeneral label="Cargo"/>
+       <TextIpuntGeneral label="Tempo de empresa"/>
+       <TextIpuntGeneral label="URL da foto do Naver"/>
+     </ScrollView>
     </View>
   );
 }
