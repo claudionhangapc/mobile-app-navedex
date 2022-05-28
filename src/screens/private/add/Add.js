@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ScrollView  
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton, Colors } from 'react-native-paper';
 import TextIpuntGeneral from '../../../components/TextIpuntGeneral'
+import ButtonGeneral from '../../../components/ButtonGeneral'
 import styles from './add.page.style'
 
 export default function Home() {
@@ -30,6 +31,7 @@ export default function Home() {
        <TextIpuntGeneral label="Cargo"/>
        <TextIpuntGeneral label="Tempo de empresa"/>
        <TextIpuntGeneral label="URL da foto do Naver"/>
+       <ButtonGeneral label="Salvar"/>
      </ScrollView>
     </View>
   );
