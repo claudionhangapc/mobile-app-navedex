@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from './home.page.style'
 import CardNaver from '../../../components/private/CardNaver'
+import ModalShowDetails from '../../../components/private/ModalShowDetails'
 
 const DATA = [
   {
@@ -25,6 +26,7 @@ const DATA = [
 export default function Home() {
   return (
     <View style={styles.container}>
+      <ModalShowDetails/>
       <View style={styles.containerChildren} >
         <Text style={styles.logo}>
           Navers
