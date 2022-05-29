@@ -5,7 +5,7 @@ import { IconButton, Colors } from 'react-native-paper';
 import { useState } from 'react';
 
 export default function CardNaver() {
-  const [showModal, setShowModal] = useState(true)
+  const [showModal, setShowModal] = useState(false)
   const onPress = () => {
     setShowModal(false)
   };
