@@ -26,7 +26,9 @@ const DATA = [
 export default function Home() {
   return (
     <View style={styles.container}>
+      <View style={{ zIndex: 65000 }}>
       <ModalShowDetails/>
+      </View>
       <View style={styles.containerChildren} >
         <Text style={styles.logo}>
           Navers

@@ -1,25 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TouchableOpacity, Modal} from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, Modal, TouchableWithoutFeedback} from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton, Colors } from 'react-native-paper';
+import { useState } from 'react';
 
 export default function CardNaver() {
+  const [showModal, setShowModal] = useState(true)
+  const onPress = () => {
+    setShowModal(false)
+  };
   return (
-      <View
-        >
+      
+        <View  style={{
+          flex:1,
+        }}>
         <Modal
-          animationType='fade' 
-          visible ={true}
+          animationType='slide' 
+          visible ={showModal}
           transparent={true}
         > 
+        <TouchableWithoutFeedback
+      onPress={onPress}
+      style={{
+        flex:1,
+      }}
+        >
           <View style={styles.containerModal}>
-            <View>
-              <Text style={{
-                color:'#fff'
-              }}>
-                ola bom dia gurizada
-              </Text>
-            </View>
             <View style={styles.main}>
               <View
                 style={styles.imageView}
@@ -56,11 +62,27 @@ export default function CardNaver() {
                  Estudo das Redes Neurais
                 </Text>
               </View>
+              <View style={styles.viewAction}>
+                <IconButton
+                  icon="delete"
+                  color="#212121"
+                  size={20}
+                  onPress={() => console.log('Pressed')}
+                />
+                  <IconButton
+                    icon="pencil"
+                    color="#212121"
+                    size={20}
+                    onPress={() => console.log('Pressed')}
+                  />
+              </View>
+
               </View>
             </View>
           </View>
+          </TouchableWithoutFeedback>
         </Modal>
-      </View>
+        </View>
   );
 }
 
@@ -105,4 +127,8 @@ const styles = StyleSheet.create({
     paddingLeft:10,
     paddingRight:10,
   },
+  viewAction:{
+    flexDirection:'row',
+    marginBottom:24,
+  }
 })
