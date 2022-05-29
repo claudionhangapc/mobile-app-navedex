@@ -5,6 +5,7 @@ import styles from './home.page.style'
 import CardNaver from '../../../components/private/CardNaver'
 import ModalShowDetails from '../../../components/private/ModalShowDetails'
 import ModalDeleteNaver from '../../../components/private/ModalDeleteNaver'
+import ModalUpdateNaver from '../../../components/private/ModalUpdateNaver'
 
 const DATA = [
   {
@@ -28,8 +29,9 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <View style={{ zIndex: 65000 }}>
-      <ModalShowDetails/>
-      <ModalDeleteNaver/>
+      {/*<ModalShowDetails/>
+      <ModalDeleteNaver/>*/}
+      <ModalUpdateNaver/> 
       </View>
       <View style={styles.containerChildren} >
         <Text style={styles.logo}>
