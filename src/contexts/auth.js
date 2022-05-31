@@ -7,7 +7,7 @@ const initialState = {
   isLoggedIn:false,
   email:null,
   userToken:null,
-  isLoading:false,
+  isLoading:true,
 }
 const reducer = (state = initialState, action)=>{
   switch(action.type){
@@ -18,7 +18,11 @@ const reducer = (state = initialState, action)=>{
       return {...state, isLoggedIn:false, userToken:action.token}
     }
     case "RESTORE_TOKEN":{
-      return {...state, userToken:action.token}
+      return {
+        ...state, 
+        userToken:action.token,
+        isLoading:false
+      }
     }
       
   } 
@@ -53,6 +57,30 @@ export const AuthProvider = ({children})=>{
       token:null,
     })
   }
+
+  const handleToken = async ()=>{
+    let token;
+    try {
+      const token = await AsyncStorage.getItem('@userToken')
+    } catch (error) {
+      
+    }
+    
+    dispatch({
+      type:'RESTORE_TOKEN',
+      token:token,
+    })
+    
+  }
+
+  React.useEffect(() => { 
+    const bootstrapAsync = async () => {
+      handleToken()
+    }
+
+    bootstrapAsync()
+
+  }, []);
 
   return(
     <AuthContext.Provider value={{state, handleLogin, handleLogout }}>
