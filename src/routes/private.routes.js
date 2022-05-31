@@ -17,21 +17,20 @@ export default function PrivateRoutes() {
           headerTitle:()=><Header/>
         }}
       />
-
-      {/*<Stack.Screen 
+      <Stack.Screen 
         name="Adicionar" 
         component={Add}
         options={{
           headerTitle:()=><Header/>
         }}
-      /> */}
-       {/*<Stack.Screen 
+      /> 
+       <Stack.Screen 
         name="Editar" 
         component={Edit}
         options={{
           headerTitle:()=><Header/>
         }}
-      /> */}
+      /> 
       
     </Stack.Navigator>
   );

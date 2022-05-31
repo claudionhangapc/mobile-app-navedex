@@ -30,8 +30,8 @@ export default function Home() {
     <View style={styles.container}>
       <View style={{ zIndex: 65000 }}>
       {/*<ModalShowDetails/>
-      <ModalDeleteNaver/>*/}
-      <ModalUpdateNaver/> 
+      <ModalDeleteNaver/>
+      <ModalUpdateNaver/>*/} 
       </View>
       <View style={styles.containerChildren} >
         <Text style={styles.logo}>
