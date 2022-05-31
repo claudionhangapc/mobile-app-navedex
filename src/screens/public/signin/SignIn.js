@@ -16,6 +16,8 @@ export default function SignIn() {
         email: "testepc@gmail.com",
 	      password: "nave1234"
       })
+
+      handleLogin(result)
       console.log(result)
     } catch (error) {
       
