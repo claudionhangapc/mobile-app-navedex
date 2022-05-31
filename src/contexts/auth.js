@@ -51,6 +51,7 @@ export const AuthProvider = ({children})=>{
 
     // 
     await AsyncStorage.removeItem('@userToken')
+    //await AsyncStorage.setItem('@userToken',null)
     //
     dispatch({
       type:'LOGGED_OUT',
@@ -62,6 +63,13 @@ export const AuthProvider = ({children})=>{
     let token;
     try {
       const token = await AsyncStorage.getItem('@userToken')
+      if (token){
+        dispatch({
+          type:'LOGGED_IN',
+          token
+        })
+      }
+      
     } catch (error) {
       
     }

@@ -8,7 +8,7 @@ export default function Routes() {
   const {state} = useContext(AuthContext)
   /*state.isLoading ? <PrivateRoutes/> :  < PublicRoutes />*/
   return (
-    state.isLoading ? <Splash/> :  state.userToken == null ? < PublicRoutes />:<PrivateRoutes/>
+    state.isLoading ? <Splash/> : state.isLoggedIn ? <PrivateRoutes/>:< PublicRoutes />
   );
 }
 
