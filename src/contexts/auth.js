@@ -11,6 +11,9 @@ const reducer = (state = initialState, action)=>{
     case "LOGGED_IN":{
       return {...state, isLoggedIn:true}
     }
+    case "LOGGED_OUT":{
+      return {...state, isLoggedIn:false}
+    }
       
   } 
 
@@ -24,8 +27,14 @@ export const AuthProvider = ({children})=>{
       type:'LOGGED_IN'
     })
   }
+  const handleLogout = async (data = null)=>{
+    dispatch({
+      type:'LOGGED_OUT'
+    })
+  }
+
   return(
-    <AuthContext.Provider value={{state, handleLogin }}>
+    <AuthContext.Provider value={{state, handleLogin, handleLogout }}>
       {children}
     </AuthContext.Provider>
   )

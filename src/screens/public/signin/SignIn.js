@@ -5,9 +5,22 @@ import { StyleSheet, Text, View, TextInput, Button, Image, TouchableOpacity } fr
 import styles from  './signin.page.style'
 
 import AuthContext from '../../../contexts/auth';
+import * as authService from '../../../services/auth'
 
 export default function SignIn() {
   const {handleLogin} = useContext(AuthContext)
+
+  const signIn = async ()=>{
+    try{
+      const result = await authService.signIn({
+        email: "testepc@gmail.com",
+	      password: "nave1234"
+      })
+      console.log(result)
+    } catch (error) {
+      
+    }
+  }
   return (
     <SafeAreaView style={styles.container}>
       <View >
@@ -59,7 +72,8 @@ export default function SignIn() {
         style={styles.button}
         onPress = {
           ()=>{
-            handleLogin()
+            //handleLogin()
+            signIn()
           }
         }
         >

@@ -1,8 +1,11 @@
+import React, {useContext} from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
+import AuthContext from '../../contexts/auth';
 
 export default function Header() {
+  const {handleLogout} = useContext(AuthContext)
   return (
     
       <View style={styles.containerChildren}>
@@ -16,7 +19,7 @@ export default function Header() {
        <TouchableOpacity 
         style={styles.button}
         onPress={()=>{
-          alert("voce deseja realmente sair ?")
+          handleLogout()
         }}
         >
           <Text 
