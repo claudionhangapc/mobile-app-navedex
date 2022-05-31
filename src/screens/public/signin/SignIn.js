@@ -1,9 +1,13 @@
+import React, {useContext} from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet, Text, View, TextInput, Button, Image, TouchableOpacity } from 'react-native';
 import styles from  './signin.page.style'
 
+import AuthContext from '../../../contexts/auth';
+
 export default function SignIn() {
+  const {handleLogin} = useContext(AuthContext)
   return (
     <SafeAreaView style={styles.container}>
       <View >
@@ -52,7 +56,13 @@ export default function SignIn() {
       </View>
       <View style={styles.buttonView}>
         <TouchableOpacity 
-        style={styles.button}>
+        style={styles.button}
+        onPress = {
+          ()=>{
+            handleLogin()
+          }
+        }
+        >
           <Text 
           style={styles.textButton}
           >
