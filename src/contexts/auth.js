@@ -1,5 +1,6 @@
 import * as React from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 import axios from 'axios';
 const AuthContext = React.createContext({});
 
@@ -34,7 +35,8 @@ export const AuthProvider = ({children})=>{
   
   const handleLogin = async (data)=>{
     const {token} = data
-    await AsyncStorage.setItem('@userToken',token)
+    await SecureStore.setItemAsync('userToken',token);
+    //await AsyncStorage.setItem('@userToken',token)
 
     //
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
@@ -49,8 +51,8 @@ export const AuthProvider = ({children})=>{
 
   const handleLogout = async (data = null)=>{
 
-    // 
-    await AsyncStorage.removeItem('@userToken')
+    await SecureStore.deleteItemAsync('userToken');
+    //await AsyncStorage.removeItem('userToken')
     //await AsyncStorage.setItem('@userToken',null)
     //
     dispatch({
@@ -62,7 +64,8 @@ export const AuthProvider = ({children})=>{
   const handleToken = async ()=>{
     let token;
     try {
-      const token = await AsyncStorage.getItem('@userToken')
+      //const token = await AsyncStorage.getItem('@userToken')
+      const token = await SecureStore.getItemAsync('userToken')
       if (token){
         dispatch({
           type:'LOGGED_IN',
