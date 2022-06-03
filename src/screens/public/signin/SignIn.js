@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { StyleSheet, Text, View, TextInput, Button, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
 import styles from  './signin.page.style'
 
 import AuthContext from '../../../contexts/auth';
@@ -12,14 +12,13 @@ export default function SignIn() {
   const [error, setError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [email, setEmail] = useState('')
+  const [load, setLoad] = useState(false)
   const [password, setPassword] = useState('')
 
   const signIn = async ()=>{
     setError(false)
     setErrorMessage('')
-
-    console.log(email,password)
-    
+    setLoad(true)
     try{
       /*email: "testepc@gmail.com",
 	      password: "nave1234"*/
@@ -30,11 +29,14 @@ export default function SignIn() {
       })
 
       handleLogin(result)
-      console.log(result)
+
+      //console.log(result)
     } catch (error) {
       console.log(error)
       setError(true) 
     }
+
+    setLoad(false)
   }
   return (
     <SafeAreaView style={styles.container}>
@@ -90,7 +92,10 @@ export default function SignIn() {
         </Text>
       </View>
       )}
-      <View style={styles.buttonView}>
+      { load ? (<View style={styles.buttonView}>
+        <ActivityIndicator size="large" color="#212121"/>
+      </View>):
+      (<View style={styles.buttonView}>
         <TouchableOpacity 
         style={styles.button}
         onPress = {
@@ -106,7 +111,7 @@ export default function SignIn() {
             Entrar
           </Text>
         </TouchableOpacity>
-      </View>
+      </View>)}
     </SafeAreaView>
   );
 }
