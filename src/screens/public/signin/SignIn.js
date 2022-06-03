@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet, Text, View, TextInput, Button, Image, TouchableOpacity } from 'react-native';
@@ -9,18 +9,31 @@ import * as authService from '../../../services/auth'
 
 export default function SignIn() {
   const {handleLogin} = useContext(AuthContext)
+  const [error, setError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const signIn = async ()=>{
+    setError(false)
+    setErrorMessage('')
+
+    console.log(email,password)
+    
     try{
+      /*email: "testepc@gmail.com",
+	      password: "nave1234"*/
+      
       const result = await authService.signIn({
-        email: "testepc@gmail.com",
-	      password: "nave1234"
+        email,
+        password
       })
 
       handleLogin(result)
       console.log(result)
     } catch (error) {
-      
+      console.log(error)
+      setError(true) 
     }
   }
   return (
@@ -46,6 +59,9 @@ export default function SignIn() {
           <TextInput
             style={styles.input}
             placeholder='E-mail'
+            value={email}
+            onChangeText={setEmail}
+            autoCapitalize = 'none'
           />
         </View>
       </View>
@@ -54,21 +70,26 @@ export default function SignIn() {
           <Text  
           style={styles.text}
           >
-            Senha
-          </Text>
+            Senha 
+          </Text> 
         </View>
         <View style={styles.inputView}>
           <TextInput
             style={styles.input}
             placeholder='Senha'
+            value={password}
+            onChangeText={setPassword}
+            autoCapitalize = 'none'
           />
         </View>
       </View>
+      {error && (
       <View style={styles.errorView}>
         <Text style={styles.errorText}>
           Senha ou email incorreto
         </Text>
       </View>
+      )}
       <View style={styles.buttonView}>
         <TouchableOpacity 
         style={styles.button}
