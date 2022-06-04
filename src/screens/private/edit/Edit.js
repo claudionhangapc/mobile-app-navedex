@@ -5,8 +5,10 @@ import { IconButton, Colors } from 'react-native-paper';
 import TextIpuntGeneral from '../../../components/TextIpuntGeneral'
 import ButtonGeneral from '../../../components/ButtonGeneral'
 import styles from './edit.page.style'
+import { useNavigation } from '@react-navigation/native';
 
-export default function Home() {
+export default function Edit() {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.containerChildren} >
@@ -14,7 +16,7 @@ export default function Home() {
           icon="arrow-left"
           color="#212121"
           size={20}
-          onPress={() => console.log('Pressed')}
+          onPress={() => navigation.goBack() }
           />
         <Text style={styles.title}>
           Editar Naver
