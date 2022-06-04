@@ -7,6 +7,7 @@ import ModalShowDetails from '../../../components/private/ModalShowDetails'
 import ModalDeleteNaver from '../../../components/private/ModalDeleteNaver'
 import ModalUpdateNaver from '../../../components/private/ModalUpdateNaver'
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 const DATA = [
   {
@@ -28,6 +29,7 @@ const DATA = [
 ];
 export default function Home() {
   const [showModal, setShowModal] = useState(false)
+  const navigation = useNavigation();
   
   return (
     <View style={styles.container}>
@@ -45,7 +47,7 @@ export default function Home() {
         <TouchableOpacity 
         style={styles.button}
         onPress={()=>{
-          alert("voce deseja realmente sair ?")
+          navigation.navigate('Adicionar')
         }}
         >
           <Text 

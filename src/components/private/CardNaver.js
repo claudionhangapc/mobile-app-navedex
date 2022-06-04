@@ -2,8 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton, Colors } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function CardNaver({ShowDetails}) {
+  const navigation = useNavigation();
   return (
       <View  
       style={{
@@ -42,7 +45,7 @@ export default function CardNaver({ShowDetails}) {
             icon="pencil"
             color="#212121"
             size={20}
-            onPress={() => console.log('Pressed')}
+            onPress={() => navigation.navigate('Editar')}
           />
         </View>
        
