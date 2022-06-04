@@ -4,8 +4,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton, Colors } from 'react-native-paper';
 import { useState } from 'react';
 
-export default function CardNaver() {
-  const [showModal, setShowModal] = useState(false)
+export default function CardNaver({showModal, setShowModal}) {
+  //const [showModal, setShowModal] = useState(true)
+
   const onPress = () => {
     setShowModal(false)
   };

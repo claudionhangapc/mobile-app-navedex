@@ -3,20 +3,24 @@ import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton, Colors } from 'react-native-paper';
 
-export default function CardNaver() {
+export default function CardNaver({ShowDetails}) {
   return (
       <View  
       style={{
        marginBottom:15,
       }}
         >
-      <Image
+        <TouchableOpacity
+          onPress={() => ShowDetails(true)}
+        >
+        <Image
           style={styles.logo}
           
           source={
             require('../../../assets/IMG_9945.png')
           }
         />
+        </TouchableOpacity>
         <View style={styles.viewTextName}>
           <Text style={styles.textName}>
             Juliano Reis

@@ -6,6 +6,7 @@ import CardNaver from '../../../components/private/CardNaver'
 import ModalShowDetails from '../../../components/private/ModalShowDetails'
 import ModalDeleteNaver from '../../../components/private/ModalDeleteNaver'
 import ModalUpdateNaver from '../../../components/private/ModalUpdateNaver'
+import { useState } from 'react';
 
 const DATA = [
   {
@@ -26,13 +27,17 @@ const DATA = [
   }
 ];
 export default function Home() {
+  const [showModal, setShowModal] = useState(false)
+  
   return (
     <View style={styles.container}>
       <View style={{ zIndex: 65000 }}>
-      {/*<ModalShowDetails/>
-      <ModalDeleteNaver/>
-      <ModalUpdateNaver/>*/} 
+        <ModalShowDetails
+        showModal={showModal}
+        setShowModal={setShowModal}
+        />
       </View>
+
       <View style={styles.containerChildren} >
         <Text style={styles.logo}>
           Navers
@@ -57,7 +62,7 @@ export default function Home() {
         flex:1,
       }} 
       keyExtractor={item => item.id}
-      renderItem ={({ item }) => (<CardNaver/>)}
+      renderItem ={({ item }) => (<CardNaver ShowDetails ={setShowModal}/>)}
       data={DATA}
       showsVerticalScrollIndicator={false}
       />
