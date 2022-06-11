@@ -6,9 +6,11 @@ import TextIpuntGeneral from '../../../components/TextIpuntGeneral'
 import ButtonGeneral from '../../../components/ButtonGeneral'
 import styles from './add.page.style'
 import { useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
 
 export default function Home() {
   const navigation = useNavigation();
+  const [nome,setNome] = useState('')
   const salvar = ()=>{
     alert("ola")
   }
@@ -30,7 +32,12 @@ export default function Home() {
      }}
      showsVerticalScrollIndicator={false}
      >
-       <TextIpuntGeneral label="Nome" errorMessageState={true}/>
+       <TextIpuntGeneral label="Nome" errorMessageState={true} errorMessage='Email ou senha erra' onChangeText={setNome} value={nome}/>
+       <View>
+        <Text>
+        {nome}
+        </Text>
+       </View>
        <TextIpuntGeneral label="Idade"/>
        <TextIpuntGeneral label="Projetos que participou"/>
        <TextIpuntGeneral label="Cargo"/>

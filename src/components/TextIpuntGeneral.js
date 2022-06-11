@@ -3,7 +3,7 @@ import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity, FlatList } 
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton, Colors } from 'react-native-paper';
 
-export default function TextIpuntGeneral({label,  errorMessage, errorMessageState=false}) {
+export default function TextIpuntGeneral({label = '', value = '',  errorMessage = '', errorMessageState = false, onChangeText = null}) {
   return (
     <View style={styles.container}>
       <View style={styles.textView}>
@@ -17,13 +17,15 @@ export default function TextIpuntGeneral({label,  errorMessage, errorMessageStat
         <TextInput
           style={styles.input}
           placeholder={label}
+          value ={value}
+          onChangeText = {onChangeText}
         />
       </View>
       {errorMessageState && (<View style={styles.errorView}>
         <Text  
           style={styles.errorText}
           >
-          email não pode ter este formato
+          {errorMessage}
         </Text>
       </View>)}
     </View>
@@ -58,6 +60,7 @@ const styles = StyleSheet.create({
     marginTop:2,
    },
    errorText:{
-    color:'red'
+    color:'#e57373',
+    fontSize:14,
    }
 })
