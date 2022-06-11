@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton, Colors } from 'react-native-paper';
 import TextIpuntGeneral from '../../../components/TextIpuntGeneral'
 import ButtonGeneral from '../../../components/ButtonGeneral'
+import DatePickerGeneral from '../../../components/DatePickerGeneral'
 import styles from './add.page.style'
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
@@ -62,13 +63,19 @@ export default function Add() {
      }}
      showsVerticalScrollIndicator={false}
      >
-       <TextIpuntGeneral label="Nome" errorMessageState={errorNomeState} errorMessage='o campo nome de ser um nome valido' onChangeText={setNome} value={nome} />
-       <TextIpuntGeneral label="Idade"/>
+       <TextIpuntGeneral 
+        label="Nome" 
+        errorMessageState={errorNomeState} 
+        errorMessage='o campo nome de ser um nome valido' 
+        onChangeText={setNome} value={nome} 
+        />
+        <DatePickerGeneral/>
+       {/*<TextIpuntGeneral label="Idade"/>
        <TextIpuntGeneral label="Projetos que participou"/>
        <TextIpuntGeneral label="Cargo"/>
        <TextIpuntGeneral label="Tempo de empresa"/>
        <TextIpuntGeneral label="URL da foto do Naver"/>
-       <ButtonGeneral label="Salvar" execute={salvar}/>
+    <ButtonGeneral label="Salvar" execute={salvar}/> */}
      </ScrollView>
     </View>
   );
