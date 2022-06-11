@@ -8,11 +8,41 @@ import styles from './add.page.style'
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 
-export default function Home() {
+import validator from 'validator';
+
+export default function Add() {
   const navigation = useNavigation();
+  const [sendData, setSendData] = useState(false);
+
   const [nome,setNome] = useState('')
+  const [errorNomeState, setErrorNomeState] = useState(false)
+
+  const [idade,setIdade] = useState('')
+  const [errorIdadeState, setErrorIdadeState] = useState(false)
+  
   const salvar = ()=>{
-    alert("ola")
+    resetAllErrorState()
+    handleErrorNomeState()
+    handleIdadeNomeState()
+    
+  }
+
+  const resetAllErrorState = ()=>{
+    setSendData(true)
+    setErrorNomeState(false)   
+  }
+  const handleErrorNomeState = ()=>{
+    if(validator.isEmpty(nome) || validator.isNumeric(nome)){
+      setSendData(false)
+      setErrorNomeState(true)
+    }
+  }
+
+  handleIdadeNomeState = ()=>{
+    if(!validator.isNumeric(idade)){
+      setSendData(false)
+      setErrorIdadeState(true)
+    }
   }
   return (
     <View style={styles.container}>
@@ -32,12 +62,7 @@ export default function Home() {
      }}
      showsVerticalScrollIndicator={false}
      >
-       <TextIpuntGeneral label="Nome" errorMessageState={true} errorMessage='Email ou senha erra' onChangeText={setNome} value={nome}/>
-       <View>
-        <Text>
-        {nome}
-        </Text>
-       </View>
+       <TextIpuntGeneral label="Nome" errorMessageState={errorNomeState} errorMessage='o campo nome de ser um nome valido' onChangeText={setNome} value={nome} />
        <TextIpuntGeneral label="Idade"/>
        <TextIpuntGeneral label="Projetos que participou"/>
        <TextIpuntGeneral label="Cargo"/>
