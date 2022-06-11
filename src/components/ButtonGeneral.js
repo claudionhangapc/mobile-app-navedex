@@ -3,10 +3,13 @@ import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity, FlatList } 
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton, Colors } from 'react-native-paper';
 
-export default function ButtonGeneral({label}) {
+export default function ButtonGeneral({label, execute}) {
   return (
     <View style={styles.buttonView}>
         <TouchableOpacity 
+        onPress={()=>{
+          execute()
+        }}
         style={styles.button}>
           <Text 
           style={styles.textButton}

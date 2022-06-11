@@ -9,6 +9,9 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function Home() {
   const navigation = useNavigation();
+  const salvar = ()=>{
+    alert("ola")
+  }
   return (
     <View style={styles.container}>
       <View style={styles.containerChildren} >
@@ -27,13 +30,13 @@ export default function Home() {
      }}
      showsVerticalScrollIndicator={false}
      >
-       <TextIpuntGeneral label="Nome"/>
+       <TextIpuntGeneral label="Nome" errorMessageState={true}/>
        <TextIpuntGeneral label="Idade"/>
        <TextIpuntGeneral label="Projetos que participou"/>
        <TextIpuntGeneral label="Cargo"/>
        <TextIpuntGeneral label="Tempo de empresa"/>
        <TextIpuntGeneral label="URL da foto do Naver"/>
-       <ButtonGeneral label="Salvar"/>
+       <ButtonGeneral label="Salvar" execute={salvar}/>
      </ScrollView>
     </View>
   );
