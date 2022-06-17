@@ -5,14 +5,16 @@ import { IconButton, Colors } from 'react-native-paper';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { useState } from 'react';
+import { Keyboard } from 'react-native';
 export default function DatePickerGeneral() {
   
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [data, setData] = useState(new Date());
-
+  const [value, setValue] = useState('')
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
+    Keyboard.dismiss();
   };
 
   const hideDatePicker = () => {
@@ -22,30 +24,45 @@ export default function DatePickerGeneral() {
   const handleConfirm = (date) => {
     console.log("A date has been picked: ", date);
     setData(date)
-    
+    convertDate(date)
     hideDatePicker();
   };
 
   const convertDate = (data) => {
     const dataFormatada = ((data.getDate() )) + "-" + ((data.getMonth() + 1)) + "-" + data.getFullYear();
-    return dataFormatada;
+    setValue(dataFormatada)
+    //return dataFormatada;
   }
 
   return (
     <View style={styles.buttonView}>
-        <TouchableOpacity 
+        <View
+        style={styles.button}
+        >
+          <TextInput
+          placeholder="data"
+          value = {value ? value : ''}
+          onFocus={()=>{
+            showDatePicker()
+          }}
+          />
+
+          
+        </View>
+        {/*<TouchableOpacity 
           activeOpacity={0}
           onPress={()=>{
             showDatePicker()
           }}
           style={styles.button}
         >
-          <Text 
+         <Text 
             style ={styles.textButton}
           >
             {convertDate(data)}
-          </Text>
-        </TouchableOpacity> 
+        </Text>
+        <TextInput></TextInput>
+        </TouchableOpacity> */}
         <DateTimePickerModal  
           isVisible={isDatePickerVisible}
           mode="date"
