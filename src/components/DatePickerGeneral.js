@@ -1,17 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity, FlatList, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity, FlatList } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton, Colors } from 'react-native-paper';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { useState } from 'react';
 import { Keyboard } from 'react-native';
-export default function DatePickerGeneral() {
-  
+import { useState } from 'react';
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+
+export default function TextIpuntGeneral({label = '', value = '',  errorMessage = '', errorMessageState = false, onChangeText = null}) {
+
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [data, setData] = useState(new Date());
-  const [value, setValue] = useState('')
-
+  const [valueString, setValueString] = useState('')
+  
   const showDatePicker = () => {
     setDatePickerVisibility(true);
     Keyboard.dismiss();
@@ -30,45 +30,42 @@ export default function DatePickerGeneral() {
 
   const convertDate = (data) => {
     const dataFormatada = ((data.getDate() )) + "-" + ((data.getMonth() + 1)) + "-" + data.getFullYear();
-    setValue(dataFormatada)
+    setValueString(dataFormatada)
     //return dataFormatada;
   }
 
   return (
-    <View style={styles.buttonView}>
-        <View
-        style={styles.button}
-        >
-          <TextInput
-          placeholder="data"
-          value = {value ? value : ''}
+    <View style={styles.container}>
+      <View style={styles.textView}>
+          <Text  
+          style={styles.text}
+          >
+            {label}
+          </Text>
+      </View>
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.input}
+          placeholder={label}
+          value ={valueString}
           onFocus={()=>{
             showDatePicker()
           }}
-          />
-
-          
-        </View>
-        {/*<TouchableOpacity 
-          activeOpacity={0}
-          onPress={()=>{
-            showDatePicker()
-          }}
-          style={styles.button}
-        >
-         <Text 
-            style ={styles.textButton}
-          >
-            {convertDate(data)}
-        </Text>
-        <TextInput></TextInput>
-        </TouchableOpacity> */}
-        <DateTimePickerModal  
+        />
+      </View>
+      <DateTimePickerModal  
           isVisible={isDatePickerVisible}
           mode="date"
           onConfirm={handleConfirm}
           onCancel={hideDatePicker}
         />  
+      {errorMessageState && (<View style={styles.errorView}>
+        <Text  
+          style={styles.errorText}
+          >
+          {errorMessage}
+        </Text>
+      </View>)}
     </View>
   );
 }
@@ -76,16 +73,32 @@ export default function DatePickerGeneral() {
 
 
 const styles = StyleSheet.create({
-  buttonView:{
-    width:'100%',
-    marginBottom:22, 
-    borderWidth:1,
-   },
-  button:{
-    height:40,
-    padding:8, 
+  container:{
+    marginBottom:22,
   },
-  textButton:{
+   inputView:{
+     width:'100%',
+   },
+   input:{
+     width:'100%',
+     borderWidth:1,
+     height:40,
+     padding:10
+   },
+   textView:{
+     marginBottom:4,
+     textAlign:'left'
+   },
+   text:{
+     fontSize:14,
+     fontWeight:'600',
+   },
+   errorView:{
+    width:'100%',
+    marginTop:2,
+   },
+   errorText:{
+    color:'#e57373',
     fontSize:14,
-  }
+   }
 })

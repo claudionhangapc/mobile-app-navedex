@@ -69,7 +69,7 @@ export default function Add() {
         errorMessage='o campo nome de ser um nome valido' 
         onChangeText={setNome} value={nome} 
         />
-        <DatePickerGeneral/>
+        <DatePickerGeneral label="Nome" />
        {/*<TextIpuntGeneral label="Idade"/>
        <TextIpuntGeneral label="Projetos que participou"/>
        <TextIpuntGeneral label="Cargo"/>
