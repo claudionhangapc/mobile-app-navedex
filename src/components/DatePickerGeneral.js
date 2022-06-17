@@ -3,41 +3,55 @@ import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity, FlatList, T
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton, Colors } from 'react-native-paper';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import DatePicker from 'react-native-date-picker'
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { useState } from 'react';
 export default function DatePickerGeneral() {
-
-  const [date, setDate] = useState(new Date())
-  const [open, setOpen] = useState(false)
   
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [data, setData] = useState(new Date());
+
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    console.log("A date has been picked: ", date);
+    setData(date)
+    
+    hideDatePicker();
+  };
+
+  const convertDate = (data) => {
+    const dataFormatada = ((data.getDate() )) + "-" + ((data.getMonth() + 1)) + "-" + data.getFullYear();
+    return dataFormatada;
+  }
+
   return (
     <View style={styles.buttonView}>
-        <TouchableHighlight 
+        <TouchableOpacity 
           activeOpacity={0}
           onPress={()=>{
-            setOpen(true)
+            showDatePicker()
           }}
           style={styles.button}
         >
           <Text 
             style ={styles.textButton}
           >
-            ola
+            {convertDate(data)}
           </Text>
-          
-        </TouchableHighlight>
-        <DatePicker
-            modal
-            open={open}
-            date={date}
-            onConfirm={(date) => {
-              setOpen(false)
-              setDate(date)
-            }}
-            onCancel={() => {
-              setOpen(false)
-            }}
-          />
+        </TouchableOpacity> 
+        <DateTimePickerModal  
+          isVisible={isDatePickerVisible}
+          mode="date"
+          onConfirm={handleConfirm}
+          onCancel={hideDatePicker}
+        />  
     </View>
   );
 }
