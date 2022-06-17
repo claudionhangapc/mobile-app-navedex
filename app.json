@@ -24,7 +24,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.claudionhangapc.mobileappnavedex"
     },
     "web": {
       "favicon": "./assets/favicon.png"

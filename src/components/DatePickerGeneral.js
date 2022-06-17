@@ -3,18 +3,19 @@ import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity, FlatList, T
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton, Colors } from 'react-native-paper';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import DatePicker from 'react-native-date-picker'
 import { useState } from 'react';
 export default function DatePickerGeneral() {
 
-  const [date, setDate] = useState('')
-  const [show, setShow] = useState(false)
+  const [date, setDate] = useState(new Date())
+  const [open, setOpen] = useState(false)
   
   return (
     <View style={styles.buttonView}>
         <TouchableHighlight 
           activeOpacity={0}
           onPress={()=>{
-            alert("ola, bom dia")
+            setOpen(true)
           }}
           style={styles.button}
         >
@@ -23,7 +24,20 @@ export default function DatePickerGeneral() {
           >
             ola
           </Text>
+          
         </TouchableHighlight>
+        <DatePicker
+            modal
+            open={open}
+            date={date}
+            onConfirm={(date) => {
+              setOpen(false)
+              setDate(date)
+            }}
+            onCancel={() => {
+              setOpen(false)
+            }}
+          />
     </View>
   );
 }
