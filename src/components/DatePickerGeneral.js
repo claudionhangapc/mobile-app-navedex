@@ -6,7 +6,7 @@ import { Keyboard } from 'react-native';
 import { useState } from 'react';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-export default function TextIpuntGeneral({label = '', value = '',  errorMessage = '', errorMessageState = false, onChangeText = null}) {
+export default function DatePickerGeneral({label = '', value = '',  errorMessage = '', errorMessageState = false, onChangeText = null}) {
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [data, setData] = useState(new Date());

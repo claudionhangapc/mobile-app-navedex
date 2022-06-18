@@ -18,19 +18,31 @@ export default function Add() {
   const [nome,setNome] = useState('')
   const [errorNomeState, setErrorNomeState] = useState(false)
 
-  const [idade,setIdade] = useState('')
-  const [errorIdadeState, setErrorIdadeState] = useState(false)
+  const [projeto,setProjeto] = useState('')
+  const [errorProjetoState, setErrorProjetoState] = useState(false)
+
+  const [cargo,setCargo] = useState('')
+  const [errorCargoState, setErrorCargoState] = useState(false)
+
+  const [url,setUrl] = useState('')
+  const [errorUrlState, setErrorUrlState] = useState(false)
+
+  const [dataAdmissao,setDataAdmissao] = useState('')
+  const [errorDataAdmissaoState, setDataAdmissaoState] = useState(false)
+
+  const [dataNascimento,setDataNascimento] = useState('')
+  const [errorDataNascimentoState, setDataNascimentoState] = useState(false)
   
   const salvar = ()=>{
-    resetAllErrorState()
-    handleErrorNomeState()
-    handleIdadeNomeState()
-    
+    //resetAllErrorState()
+    //handleErrorNomeState()
+    handleErrorGeneralText(nome, setErrorNomeState)
+    handleErrorGeneralText(projeto, setErrorProjetoState)
   }
 
   const resetAllErrorState = ()=>{
     setSendData(true)
-    setErrorNomeState(false)   
+    //setErrorNomeState(false)   
   }
   const handleErrorNomeState = ()=>{
     if(validator.isEmpty(nome) || validator.isNumeric(nome)){
@@ -39,43 +51,58 @@ export default function Add() {
     }
   }
 
-  handleIdadeNomeState = ()=>{
+  const handleErrorGeneralText = (value, setError)=>{
+    if(validator.isEmpty(value) || validator.isNumeric(value)){
+      setError(true)
+    }else{
+      setError(false)
+    }
+  }
+
+ /* handleIdadeNomeState = ()=>{
     if(!validator.isNumeric(idade)){
       setSendData(false)
       setErrorIdadeState(true)
     }
-  }
+  } */
   return (
     <View style={styles.container}>
-      <View style={styles.containerChildren} >
-        <IconButton
-          icon="arrow-left"
-          color="#212121"
-          size={20}
-          onPress={() => navigation.goBack()}
-          />
-        <Text style={styles.title}>
-          Adicionar Naver
-        </Text>
-     </View>
+      
      <ScrollView style={{
        flex:1,
      }}
      showsVerticalScrollIndicator={false}
-     >
-       <TextIpuntGeneral 
+     >  
+        <View style={styles.containerChildren} >
+          <IconButton
+            icon="arrow-left"
+            color="#212121"
+            size={20}
+            onPress={() => navigation.goBack()}
+            />
+          <Text style={styles.title}>
+            Adicionar Naver
+          </Text>
+      </View>
+      <TextIpuntGeneral 
         label="Nome" 
         errorMessageState={errorNomeState} 
-        errorMessage='o campo nome de ser um nome valido' 
-        onChangeText={setNome} value={nome} 
+        errorMessage='o campo nome deve ser um nome valido' 
+        onChangeText={setNome} 
+        value={nome} 
         />
-        <DatePickerGeneral label="Nome" />
-       {/*<TextIpuntGeneral label="Idade"/>
-       <TextIpuntGeneral label="Projetos que participou"/>
+        <DatePickerGeneral label="Data de nascimento" />
+       <TextIpuntGeneral 
+        label="Projetos que participou"
+        errorMessageState={errorProjetoState}
+        errorMessage='o campo projeto deve ser um texto' 
+        onChangeText={setProjeto} 
+        value={projeto} 
+       />
        <TextIpuntGeneral label="Cargo"/>
-       <TextIpuntGeneral label="Tempo de empresa"/>
+       <DatePickerGeneral label="Tempo de empresa" />
        <TextIpuntGeneral label="URL da foto do Naver"/>
-    <ButtonGeneral label="Salvar" execute={salvar}/> */}
+    <ButtonGeneral label="Salvar" execute={salvar}/> 
      </ScrollView>
     </View>
   );
