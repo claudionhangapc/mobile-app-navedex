@@ -8,7 +8,7 @@ import DatePickerGeneral from '../../../components/DatePickerGeneral'
 import styles from './add.page.style'
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
-
+import helpers from '../../../helpers/index'
 import validator from 'validator';
 
 export default function Add() {
@@ -35,9 +35,10 @@ export default function Add() {
   
   const salvar = ()=>{
     //resetAllErrorState()
-    //handleErrorNomeState()
     handleErrorGeneralText(nome, setErrorNomeState)
     handleErrorGeneralText(projeto, setErrorProjetoState)
+    handleErrorGeneralText(cargo, setErrorCargoState)
+    handleUrlState(url); 
   }
 
   const resetAllErrorState = ()=>{
@@ -58,6 +59,16 @@ export default function Add() {
       setError(false)
     }
   }
+
+  const handleUrlState = (url) => {
+    const result = helpers.validateUrl(url)
+    if(result === true){
+      setErrorUrlState(false)
+    }else{
+      setErrorUrlState(true)
+    }
+    
+  } 
 
  /* handleIdadeNomeState = ()=>{
     if(!validator.isNumeric(idade)){
@@ -99,9 +110,21 @@ export default function Add() {
         onChangeText={setProjeto} 
         value={projeto} 
        />
-       <TextIpuntGeneral label="Cargo"/>
+       <TextIpuntGeneral 
+        label="Cargo"
+        errorMessageState={errorCargoState}
+        errorMessage='o campo cargo deve ser um texto' 
+        onChangeText={setCargo} 
+        value={cargo} 
+        />
        <DatePickerGeneral label="Tempo de empresa" />
-       <TextIpuntGeneral label="URL da foto do Naver"/>
+       <TextIpuntGeneral 
+        label="URL da foto do Naver"
+        errorMessageState={errorUrlState}
+        errorMessage='url invalido' 
+        onChangeText={setUrl} 
+        value={url} 
+       />
     <ButtonGeneral label="Salvar" execute={salvar}/> 
      </ScrollView>
     </View>
