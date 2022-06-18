@@ -10,7 +10,6 @@ export default function DatePickerGeneral({label = '', value = '',  errorMessage
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [data, setData] = useState(new Date());
-  const [valueString, setValueString] = useState('')
   
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -22,7 +21,7 @@ export default function DatePickerGeneral({label = '', value = '',  errorMessage
   };
 
   const handleConfirm = (date) => {
-    console.log("A date has been picked: ", date);
+    //console.log("A date has been picked: ", date);
     setData(date)
     convertDate(date)
     hideDatePicker();
@@ -30,7 +29,7 @@ export default function DatePickerGeneral({label = '', value = '',  errorMessage
 
   const convertDate = (data) => {
     const dataFormatada = ((data.getDate() )) + "-" + ((data.getMonth() + 1)) + "-" + data.getFullYear();
-    setValueString(dataFormatada)
+    onChangeText(dataFormatada)
     //return dataFormatada;
   }
 
@@ -47,7 +46,7 @@ export default function DatePickerGeneral({label = '', value = '',  errorMessage
         <TextInput
           style={styles.input}
           placeholder={label}
-          value ={valueString}
+          value ={value}
           onFocus={()=>{
             showDatePicker()
           }}

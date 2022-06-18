@@ -34,17 +34,16 @@ export default function Add() {
   const [errorDataNascimentoState, setDataNascimentoState] = useState(false)
   
   const salvar = ()=>{
-    //resetAllErrorState()
+    setSendData(true)
     handleErrorGeneralText(nome, setErrorNomeState)
     handleErrorGeneralText(projeto, setErrorProjetoState)
     handleErrorGeneralText(cargo, setErrorCargoState)
     handleUrlState(url); 
+
+    handleDateState(dataNascimento, setDataNascimentoState)
+    handleDateState(dataAdmissao, setDataAdmissaoState)
   }
 
-  const resetAllErrorState = ()=>{
-    setSendData(true)
-    //setErrorNomeState(false)   
-  }
   const handleErrorNomeState = ()=>{
     if(validator.isEmpty(nome) || validator.isNumeric(nome)){
       setSendData(false)
@@ -68,14 +67,22 @@ export default function Add() {
       setErrorUrlState(true)
     }
     
-  } 
+  }
 
- /* handleIdadeNomeState = ()=>{
-    if(!validator.isNumeric(idade)){
-      setSendData(false)
-      setErrorIdadeState(true)
+  const handleDateState = (value, setError)=>{
+
+    const result = validator.isDate(value,{
+      format:'DD-MM-YYYY'
+    })
+
+    if(result === true){
+      setError(true)
+    }else{
+      setError(false)
     }
-  } */
+
+  }
+
   return (
     <View style={styles.container}>
       
@@ -102,7 +109,11 @@ export default function Add() {
         onChangeText={setNome} 
         value={nome} 
         />
-        <DatePickerGeneral label="Data de nascimento" />
+        <DatePickerGeneral 
+          label="Data de nascimento" 
+          onChangeText = {setDataNascimento}
+          value = {dataNascimento}
+        />
        <TextIpuntGeneral 
         label="Projetos que participou"
         errorMessageState={errorProjetoState}
@@ -117,7 +128,11 @@ export default function Add() {
         onChangeText={setCargo} 
         value={cargo} 
         />
-       <DatePickerGeneral label="Tempo de empresa" />
+       <DatePickerGeneral 
+        label="Tempo de empresa"
+        onChangeText = {setDataAdmissao}
+        value = {dataAdmissao}
+        />
        <TextIpuntGeneral 
         label="URL da foto do Naver"
         errorMessageState={errorUrlState}
