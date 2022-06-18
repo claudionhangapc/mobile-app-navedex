@@ -28,20 +28,25 @@ export default function Add() {
   const [errorUrlState, setErrorUrlState] = useState(false)
 
   const [dataAdmissao,setDataAdmissao] = useState('')
-  const [errorDataAdmissaoState, setDataAdmissaoState] = useState(false)
+  const [errorDataAdmissaoState, setErrorDataAdmissaoState] = useState(false)
 
   const [dataNascimento,setDataNascimento] = useState('')
-  const [errorDataNascimentoState, setDataNascimentoState] = useState(false)
+  const [errorDataNascimentoState, setErrorDataNascimentoState] = useState(false)
   
   const salvar = ()=>{
     setSendData(true)
-    handleErrorGeneralText(nome, setErrorNomeState)
+    /*handleErrorGeneralText(nome, setErrorNomeState)
     handleErrorGeneralText(projeto, setErrorProjetoState)
     handleErrorGeneralText(cargo, setErrorCargoState)
     handleUrlState(url); 
 
-    handleDateState(dataNascimento, setDataNascimentoState)
-    handleDateState(dataAdmissao, setDataAdmissaoState)
+    handleDateState(dataNascimento,setErrorDataNascimentoState)
+    handleDateState(dataAdmissao, setErrorDataAdmissaoState)*/
+
+    if(sendData){
+      alert("sendData")
+    }
+
   }
 
   const handleErrorNomeState = ()=>{
@@ -74,8 +79,7 @@ export default function Add() {
     const result = validator.isDate(value,{
       format:'DD-MM-YYYY'
     })
-
-    if(result === true){
+    if(result !== true){
       setError(true)
     }else{
       setError(false)
@@ -112,7 +116,9 @@ export default function Add() {
         <DatePickerGeneral 
           label="Data de nascimento" 
           onChangeText = {setDataNascimento}
+          errorMessage="Data de nascimento é obrigatório"
           value = {dataNascimento}
+          errorMessageState = {errorDataNascimentoState}
         />
        <TextIpuntGeneral 
         label="Projetos que participou"
@@ -132,6 +138,8 @@ export default function Add() {
         label="Tempo de empresa"
         onChangeText = {setDataAdmissao}
         value = {dataAdmissao}
+        errorMessage="Tempo de empresa é obrigatório"
+        errorMessageState = {errorDataAdmissaoState}
         />
        <TextIpuntGeneral 
         label="URL da foto do Naver"
