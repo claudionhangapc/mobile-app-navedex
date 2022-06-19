@@ -5,6 +5,7 @@ import { IconButton, Colors } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 
 
+
 export default function CardNaver({showDetails, item, setModalItem}) {
   const navigation = useNavigation();
   //console.log(item)
@@ -24,9 +25,9 @@ export default function CardNaver({showDetails, item, setModalItem}) {
         <Image
           style={styles.logo}
           
-          source={
-            require('../../../assets/IMG_9945.png')
-          }
+          source={{
+            uri:item.url
+          }}
         />
         </TouchableOpacity>
         <View style={styles.viewTextName}>

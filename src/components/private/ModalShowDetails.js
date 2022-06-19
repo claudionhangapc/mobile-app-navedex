@@ -1,9 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TouchableOpacity, Modal, TouchableWithoutFeedback} from 'react-native';
+import { StyleSheet, Text, View,  TouchableOpacity, Modal, TouchableWithoutFeedback} from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton, Colors } from 'react-native-paper';
 import { useState } from 'react';
 import helpers from '../../helpers/index'
+import Image from 'react-native-image-progress';
+import ProgressBar from 'react-native-progress/Bar';
 
 export default function CardNaver({showModal, setShowModal, item}) {
   //const [showModal, setShowModal] = useState(true)
@@ -13,9 +15,13 @@ export default function CardNaver({showModal, setShowModal, item}) {
   };
   
   const getAge = (date) => {
-    const onlyYear = helpers.getOnlyYear(date)
-    const age = helpers.getAge(onlyYear)
-    return age;
+    if (date){
+      const onlyYear = helpers.getOnlyYear(date)
+      const age = helpers.getAge(onlyYear)
+      return age;
+    }
+    
+    return "";
   };
   return (
       
@@ -40,9 +46,10 @@ export default function CardNaver({showModal, setShowModal, item}) {
               >
                 <Image
                   style={styles.image}
-                  source={
-                    require('../../../assets/IMG_9945.png')
-                  }
+                  source={{
+                    uri:item.url
+                  }}
+                  indicator={ProgressBar} 
                 />
               </View>
               <View style={styles.containerModalInfo}>
