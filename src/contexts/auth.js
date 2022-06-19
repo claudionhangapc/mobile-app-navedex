@@ -67,6 +67,7 @@ export const AuthProvider = ({children})=>{
       //const token = await AsyncStorage.getItem('@userToken')
       const token = await SecureStore.getItemAsync('userToken')
       if (token){
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
         dispatch({
           type:'LOGGED_IN',
           token

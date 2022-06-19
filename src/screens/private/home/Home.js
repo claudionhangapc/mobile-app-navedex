@@ -9,6 +9,8 @@ import ModalUpdateNaver from '../../../components/private/ModalUpdateNaver'
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
+import axios from 'axios';
+
 const DATA = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -31,6 +33,7 @@ export default function Home() {
   const [showModal, setShowModal] = useState(false)
   const navigation = useNavigation();
   
+  console.log(axios.defaults.headers.common["Authorization"])
   return (
     <View style={styles.container}>
       <View style={{ zIndex: 65000 }}>
