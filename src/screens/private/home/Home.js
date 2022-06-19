@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ActivityIndicator  } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from './home.page.style'
 import CardNaver from '../../../components/private/CardNaver'
@@ -30,12 +30,14 @@ const DATA = [
 ];
 export default function Home() {
   const [showModal, setShowModal] = useState(false)
+  const [load, setLoad] = useState(false)
   const navigation = useNavigation();
   const [navers, setNavers] = useState([])
   //console.log(axiosInstance.defaults.headers.common["Authorization"])
 
   useEffect(()=>{
     const fetchNaver = async ()=>{
+      setLoad(true)
       try {
         const result  = await naverService.navers()
         setNavers(result)
@@ -44,6 +46,8 @@ export default function Home() {
       } catch (error) {
         console.log(error)
       }
+
+      setLoad(false)
     }
 
     fetchNaver()
@@ -79,7 +83,10 @@ export default function Home() {
       
       </View>
       
-      <FlatList
+      { load ? (<View style={{flex:1, alignContent:'center', justifyContent:'center'}}>
+        <ActivityIndicator size="large" color="#212121"/>
+      </View>):
+      (<FlatList
        style={{
         flex:1,
       }} 
@@ -87,7 +94,7 @@ export default function Home() {
       renderItem ={({ item }) => (<CardNaver ShowDetails ={setShowModal} item = {item}/>)}
       data={navers}
       showsVerticalScrollIndicator={false}
-      />
+      />)}
       
     </View>
   );
