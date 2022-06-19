@@ -39,15 +39,18 @@ export default function Home() {
       try {
         const result  = await naverService.navers()
         setNavers(result)
-        //console.log(result)
-      } catch (error) {
         
+        //console.log(navers)
+      } catch (error) {
+        console.log(error)
       }
     }
 
     fetchNaver()
-  },[])
 
+    
+  },[])
+  
   return (
     <View style={styles.container}>
       <View style={{ zIndex: 65000 }}>
@@ -81,7 +84,7 @@ export default function Home() {
         flex:1,
       }} 
       keyExtractor={item => item.id}
-      renderItem ={({ item }) => (<CardNaver ShowDetails ={setShowModal}/>)}
+      renderItem ={({ item }) => (<CardNaver ShowDetails ={setShowModal} item = {item}/>)}
       data={navers}
       showsVerticalScrollIndicator={false}
       />

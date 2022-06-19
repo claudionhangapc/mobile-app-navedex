@@ -40,7 +40,7 @@ export const AuthProvider = ({children})=>{
 
     //
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
-
+    //console.log(`Bearer ${token}`)
     //
     dispatch({
       type:'LOGGED_IN',
@@ -52,6 +52,7 @@ export const AuthProvider = ({children})=>{
   const handleLogout = async (data = null)=>{
 
     await SecureStore.deleteItemAsync('userToken');
+    axios.defaults.headers.common["Authorization"] = ""
     //await AsyncStorage.removeItem('userToken')
     //await AsyncStorage.setItem('@userToken',null)
     //

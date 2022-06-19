@@ -5,8 +5,9 @@ import { IconButton, Colors } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 
 
-export default function CardNaver({ShowDetails}) {
+export default function CardNaver({ShowDetails, item}) {
   const navigation = useNavigation();
+  //console.log(item)
   return (
       <View  
       style={{
@@ -26,12 +27,12 @@ export default function CardNaver({ShowDetails}) {
         </TouchableOpacity>
         <View style={styles.viewTextName}>
           <Text style={styles.textName}>
-            Juliano Reis
+           {item.name}
           </Text>
         </View>
         <View style={styles.viewTexTitle}>
           <Text style={styles.texTitle}>
-            Frontend developer
+            {item.job_role}
           </Text>
         </View>
         <View style={styles.viewAction}>
