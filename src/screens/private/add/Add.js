@@ -11,6 +11,7 @@ import { useState } from 'react';
 import helpers from '../../../helpers/index'
 import validator from 'validator';
 
+//https://claudionhangapc.com/projetos/navedex/img/Juliano.png
 export default function Add() {
   const navigation = useNavigation();
   const [sendData, setSendData] = useState(false);
