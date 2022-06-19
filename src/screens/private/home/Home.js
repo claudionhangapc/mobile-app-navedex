@@ -33,6 +33,7 @@ export default function Home() {
   const [load, setLoad] = useState(false)
   const navigation = useNavigation();
   const [navers, setNavers] = useState([])
+  const [modalItem, setModalItem] = useState({});
   //console.log(axiosInstance.defaults.headers.common["Authorization"])
 
   useEffect(()=>{
@@ -59,8 +60,9 @@ export default function Home() {
     <View style={styles.container}>
       <View style={{ zIndex: 65000 }}>
         <ModalShowDetails
-        showModal={showModal}
-        setShowModal={setShowModal}
+          showModal={showModal}
+          setShowModal={setShowModal}
+          item = {modalItem}
         />
       </View>
 
@@ -83,15 +85,22 @@ export default function Home() {
       
       </View>
       
-      { load ? (<View style={{flex:1, alignContent:'center', justifyContent:'center'}}>
+      { load ? (
+      <View style={{flex:1, alignContent:'center', justifyContent:'center'}}>
         <ActivityIndicator size="large" color="#212121"/>
-      </View>):
-      (<FlatList
+      </View>
+      ):(
+      <FlatList
        style={{
         flex:1,
       }} 
       keyExtractor={item => item.id}
-      renderItem ={({ item }) => (<CardNaver ShowDetails ={setShowModal} item = {item}/>)}
+      renderItem ={({ item }) => (<CardNaver 
+        showDetails ={setShowModal} 
+        item = {item}
+        setModalItem = {setModalItem}
+
+      />)}
       data={navers}
       showsVerticalScrollIndicator={false}
       />)}

@@ -5,7 +5,7 @@ import { IconButton, Colors } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 
 
-export default function CardNaver({ShowDetails, item}) {
+export default function CardNaver({showDetails, item, setModalItem}) {
   const navigation = useNavigation();
   //console.log(item)
   return (
@@ -15,7 +15,11 @@ export default function CardNaver({ShowDetails, item}) {
       }}
         >
         <TouchableOpacity
-          onPress={() => ShowDetails(true)}
+          onPress={() => {
+            setModalItem(item)
+            showDetails(true)
+
+          }}
         >
         <Image
           style={styles.logo}

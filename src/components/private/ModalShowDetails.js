@@ -4,9 +4,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton, Colors } from 'react-native-paper';
 import { useState } from 'react';
 
-export default function CardNaver({showModal, setShowModal}) {
+export default function CardNaver({showModal, setShowModal, item}) {
   //const [showModal, setShowModal] = useState(true)
-
+  console.log(item)
   const onPress = () => {
     setShowModal(false)
   };
@@ -41,10 +41,10 @@ export default function CardNaver({showModal, setShowModal}) {
               <View style={styles.containerModalInfo}>
               <View style={styles.viewTextInfo}>
                 <Text style={styles.textPersonName}>
-                  Juliano Reis
+                {item.name} 
                 </Text>
                 <Text style={styles.textInfo}>
-                  Frontend Developer
+                {item.job_role} 
                 </Text>
               </View>
               <View style={styles.viewTextInfo}>
@@ -52,7 +52,7 @@ export default function CardNaver({showModal, setShowModal}) {
                   Idade
                 </Text>
                 <Text style={styles.textInfo}>
-                  13
+                  {item.birthdate}
                 </Text>
               </View>
               <View style={styles.viewTextInfo}>
@@ -60,7 +60,7 @@ export default function CardNaver({showModal, setShowModal}) {
                   Projetos que participou
                 </Text>
                 <Text style={styles.textInfo}>
-                 Estudo das Redes Neurais
+                {item.project} 
                 </Text>
               </View>
               <View style={styles.viewAction}>
