@@ -1,7 +1,6 @@
-import axios from 'axios';
-const baseURL = "https://navedex-api.herokuapp.com/v1"
+import {axiosInstance} from './index'
 
-const axiosInstance = axios.create({
-  baseURL,
-  
-})
+export const navers = async ()=>{
+  let res = await axiosInstance.get('/navers')
+  return res.data
+}

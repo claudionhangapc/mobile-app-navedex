@@ -6,10 +6,9 @@ import CardNaver from '../../../components/private/CardNaver'
 import ModalShowDetails from '../../../components/private/ModalShowDetails'
 import ModalDeleteNaver from '../../../components/private/ModalDeleteNaver'
 import ModalUpdateNaver from '../../../components/private/ModalUpdateNaver'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
-
-import axios from 'axios';
+import * as naverService from '../../../services/naver'
 
 const DATA = [
   {
@@ -32,8 +31,23 @@ const DATA = [
 export default function Home() {
   const [showModal, setShowModal] = useState(false)
   const navigation = useNavigation();
-  
-  console.log(axios.defaults.headers.common["Authorization"])
+  const [navers, setNavers] = useState([])
+  //console.log(axiosInstance.defaults.headers.common["Authorization"])
+
+  useEffect(()=>{
+    const fetchNaver = async ()=>{
+      try {
+        const result  = await naverService.navers()
+        setNavers(result)
+        //console.log(result)
+      } catch (error) {
+        
+      }
+    }
+
+    fetchNaver()
+  },[])
+
   return (
     <View style={styles.container}>
       <View style={{ zIndex: 65000 }}>
@@ -68,7 +82,7 @@ export default function Home() {
       }} 
       keyExtractor={item => item.id}
       renderItem ={({ item }) => (<CardNaver ShowDetails ={setShowModal}/>)}
-      data={DATA}
+      data={navers}
       showsVerticalScrollIndicator={false}
       />
       
