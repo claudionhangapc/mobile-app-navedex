@@ -3,12 +3,19 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, Modal, TouchableWithou
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton, Colors } from 'react-native-paper';
 import { useState } from 'react';
+import helpers from '../../helpers/index'
 
 export default function CardNaver({showModal, setShowModal, item}) {
   //const [showModal, setShowModal] = useState(true)
   console.log(item)
   const onPress = () => {
     setShowModal(false)
+  };
+  
+  const getAge = (date) => {
+    const onlyYear = helpers.getOnlyYear(date)
+    const age = helpers.getAge(onlyYear)
+    return age;
   };
   return (
       
@@ -52,7 +59,7 @@ export default function CardNaver({showModal, setShowModal, item}) {
                   Idade
                 </Text>
                 <Text style={styles.textInfo}>
-                  {item.birthdate}
+                  {getAge(item.birthdate)}
                 </Text>
               </View>
               <View style={styles.viewTextInfo}>
