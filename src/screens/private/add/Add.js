@@ -16,6 +16,8 @@ import * as naverService from '../../../services/naver'
 export default function Add() {
   const navigation = useNavigation();
   const [sendData, setSendData] = useState(false);
+  const [error, setError] = useState(true)
+  const [load, setLoad] = useState(false)
 
   const [nome,setNome] = useState('')
   const [errorNomeState, setErrorNomeState] = useState(false)
@@ -94,6 +96,7 @@ export default function Add() {
   }
   
   const createNaver =  async () => {
+    setLoad(true)
     const data = {
       job_role:cargo,
       admission_date:dataAdmissao.replace('-','/'),
@@ -103,11 +106,15 @@ export default function Add() {
       url:"https://claudionhangapc.com/projetos/navedex/img/Juliano.png"
     }
     try {
+      setError(false)
       const result = await naverService.createNaver(data)
       console.log(result) 
     } catch (error) {
       console.log(error)
+      setError(true) 
     }
+
+    setLoad(false)
     
   }
 
@@ -172,6 +179,13 @@ export default function Add() {
         onChangeText={setUrl} 
         value={url} 
        />
+       {error && (
+      <View style={styles.errorView}>
+        <Text style={styles.errorText}>
+          Senha ou email incorreto
+        </Text>
+      </View>
+      )}
     <ButtonGeneral label="Salvar" execute={salvar}/> 
      </ScrollView>
     </View>
