@@ -10,6 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import helpers from '../../../helpers/index'
 import validator from 'validator';
+import * as naverService from '../../../services/naver'
 
 //https://claudionhangapc.com/projetos/navedex/img/Juliano.png
 export default function Add() {
@@ -39,13 +40,15 @@ export default function Add() {
     handleErrorGeneralText(nome, setErrorNomeState)
     handleErrorGeneralText(projeto, setErrorProjetoState)
     handleErrorGeneralText(cargo, setErrorCargoState)
-    handleUrlState(url); 
+    //handleUrlState(url); 
 
     handleDateState(dataNascimento,setErrorDataNascimentoState)
     handleDateState(dataAdmissao, setErrorDataAdmissaoState)
 
     if(sendData === true){
-      alert("sendData")
+      createNaver()
+      //alert("sendData")
+
     }
 
   }
@@ -82,11 +85,30 @@ export default function Add() {
       format:'DD-MM-YYYY'
     })
     if(result !== true){
+      setSendData(false)
       setError(true)
     }else{
       setError(false)
     }
 
+  }
+  
+  const createNaver =  async () => {
+    const data = {
+      job_role:cargo,
+      admission_date:dataAdmissao.replace('-','/'),
+      birthdate:dataNascimento.replace('-','/'),
+      project:projeto,
+      name:nome,
+      url:"https://claudionhangapc.com/projetos/navedex/img/Juliano.png"
+    }
+    try {
+      const result = await naverService.createNaver(data)
+      console.log(result) 
+    } catch (error) {
+      console.log(error)
+    }
+    
   }
 
   return (
