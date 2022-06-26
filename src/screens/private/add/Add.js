@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ScrollView  } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ScrollView, ActivityIndicator  } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton, Colors } from 'react-native-paper';
 import TextIpuntGeneral from '../../../components/TextIpuntGeneral'
@@ -7,6 +7,7 @@ import ButtonGeneral from '../../../components/ButtonGeneral'
 import DatePickerGeneral from '../../../components/DatePickerGeneral'
 import styles from './add.page.style'
 import { useNavigation } from '@react-navigation/native';
+
 import { useState } from 'react';
 import helpers from '../../../helpers/index'
 import validator from 'validator';
@@ -16,7 +17,8 @@ import * as naverService from '../../../services/naver'
 export default function Add() {
   const navigation = useNavigation();
   const [sendData, setSendData] = useState(false);
-  const [error, setError] = useState(true)
+  const [error, setError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const [load, setLoad] = useState(false)
 
   const [nome,setNome] = useState('')
@@ -38,6 +40,7 @@ export default function Add() {
   const [errorDataNascimentoState, setErrorDataNascimentoState] = useState(false)
   
   const salvar = ()=>{
+    setError(false)
     setSendData(true)
     handleErrorGeneralText(nome, setErrorNomeState)
     handleErrorGeneralText(projeto, setErrorProjetoState)
@@ -50,7 +53,6 @@ export default function Add() {
     if(sendData === true){
       createNaver()
       //alert("sendData")
-
     }
 
   }
@@ -111,6 +113,7 @@ export default function Add() {
       console.log(result) 
     } catch (error) {
       console.log(error)
+      setErrorMessage(error.message)
       setError(true) 
     }
 
@@ -182,11 +185,14 @@ export default function Add() {
        {error && (
       <View style={styles.errorView}>
         <Text style={styles.errorText}>
-          Senha ou email incorreto
+          {errorMessage}
         </Text>
       </View>
       )}
-    <ButtonGeneral label="Salvar" execute={salvar}/> 
+      { load ? (<View style={styles.buttonView}>
+        <ActivityIndicator size="large" color="#212121"/>
+      </View>):
+      (<ButtonGeneral label="Salvar" execute={salvar}/> )}  
      </ScrollView>
     </View>
   );
