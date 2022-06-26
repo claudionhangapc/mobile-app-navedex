@@ -28,9 +28,24 @@ export default function DatePickerGeneral({label = '', value = '',  errorMessage
   };
 
   const convertDate = (data) => {
-    const dataFormatada = ((data.getDate() )) + "-" + ((data.getMonth() + 1)) + "-" + data.getFullYear();
-    onChangeText(dataFormatada)
-    //return dataFormatada;
+   
+    let y = data.getFullYear();
+    let m = data.getMonth() + 1; // Step 6
+    let d = data.getDate();
+    
+    y = y.toString();
+    m = m.toString();
+    d = d.toString();
+    
+    if (m.length == 1) {
+      m = '0' + m;
+    }
+    if (d.length == 1) {
+        d = '0' + d;
+    }
+    
+    onChangeText(d + "-" + m + "-" + y)
+    
   }
 
   return (

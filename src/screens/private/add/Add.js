@@ -36,15 +36,15 @@ export default function Add() {
   
   const salvar = ()=>{
     setSendData(true)
-    /*handleErrorGeneralText(nome, setErrorNomeState)
+    handleErrorGeneralText(nome, setErrorNomeState)
     handleErrorGeneralText(projeto, setErrorProjetoState)
     handleErrorGeneralText(cargo, setErrorCargoState)
     handleUrlState(url); 
 
     handleDateState(dataNascimento,setErrorDataNascimentoState)
-    handleDateState(dataAdmissao, setErrorDataAdmissaoState)*/
+    handleDateState(dataAdmissao, setErrorDataAdmissaoState)
 
-    if(sendData){
+    if(sendData === true){
       alert("sendData")
     }
 
@@ -71,6 +71,7 @@ export default function Add() {
       setErrorUrlState(false)
     }else{
       setErrorUrlState(true)
+       setSendData(false)
     }
     
   }
