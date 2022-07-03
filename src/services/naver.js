@@ -11,3 +11,8 @@ export const createNaver = async (data)=>{
   let res = await axios.post(baseURL+'/navers', data)
   return res.data
 }
+
+export const deleteNaver = async (id)=>{
+  let res = await axios.delete(`${baseURL}/navers/${id}`)
+  return res.data
+}
