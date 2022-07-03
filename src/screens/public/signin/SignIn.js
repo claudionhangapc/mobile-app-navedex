@@ -30,9 +30,9 @@ export default function SignIn() {
 
       handleLogin(result)
 
-      console.log(result)
+      //console.log(result)
     } catch (error) {
-      console.log(error)
+      //console.log(error)
       setError(true) 
     }
 

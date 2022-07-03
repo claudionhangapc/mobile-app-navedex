@@ -9,7 +9,7 @@ import ProgressBar from 'react-native-progress/Bar';
 
 export default function CardNaver({showModal, setShowModal, item}) {
   //const [showModal, setShowModal] = useState(true)
-  console.log(item)
+  //console.log(item)
   const onPress = () => {
     setShowModal(false)
   };

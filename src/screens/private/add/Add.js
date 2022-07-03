@@ -110,7 +110,7 @@ export default function Add() {
     try {
       setError(false)
       const result = await naverService.createNaver(data)
-      console.log(result) 
+      //console.log(result) 
     } catch (error) {
       console.log(error)
       setErrorMessage(error.message)
