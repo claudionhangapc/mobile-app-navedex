@@ -13,6 +13,8 @@ import helpers from '../../../helpers/index'
 import validator from 'validator';
 import * as naverService from '../../../services/naver'
 
+import ModalAddNaver from '../../../components/private/ModalAddNaver'
+
 //https://claudionhangapc.com/projetos/navedex/img/Juliano.png
 export default function Add() {
   const navigation = useNavigation();
@@ -30,7 +32,7 @@ export default function Add() {
   const [cargo,setCargo] = useState('')
   const [errorCargoState, setErrorCargoState] = useState(false)
 
-  const [url,setUrl] = useState('')
+  const [url,setUrl] = useState('https://claudionhangapc.com/projetos/navedex/img/Juliano.png')
   const [errorUrlState, setErrorUrlState] = useState(false)
 
   const [dataAdmissao,setDataAdmissao] = useState('')
@@ -38,6 +40,8 @@ export default function Add() {
 
   const [dataNascimento,setDataNascimento] = useState('')
   const [errorDataNascimentoState, setErrorDataNascimentoState] = useState(false)
+
+  const [showModal, setShowModal] = useState(false)
   
   const salvar = ()=>{
     setError(false)
@@ -105,11 +109,13 @@ export default function Add() {
       birthdate:dataNascimento.replace('-','/'),
       project:projeto,
       name:nome,
-      url:"https://claudionhangapc.com/projetos/navedex/img/Juliano.png"
+      url:url
     }
     try {
       setError(false)
       const result = await naverService.createNaver(data)
+      setShowModal(true)
+      resetAllState()
       //console.log(result) 
     } catch (error) {
       console.log(error)
@@ -121,15 +127,32 @@ export default function Add() {
     
   }
 
+  const resetAllState =  () => {
+    setNome('')
+    setProjeto('')
+    setCargo('')
+    setUrl('')
+    setDataAdmissao('')
+    setDataNascimento('')
+  }
+
   return (
     <View style={styles.container}>
+      <View>
+      
+      <ModalAddNaver
+        showModal={showModal}
+        setShowModal = {setShowModal}
+      />
+    
+      </View>
       
      <ScrollView style={{
        flex:1,
      }}
      showsVerticalScrollIndicator={false}
      >  
-        <View style={styles.containerChildren} >
+      <View style={styles.containerChildren} >
           <IconButton
             icon="arrow-left"
             color="#212121"
