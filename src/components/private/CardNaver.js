@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-export default function CardNaver({showDetails, item, setModalItem}) {
+export default function CardNaver({showDetails, item, setModalItem,setModaIndex}) {
   const navigation = useNavigation();
   //console.log(item)
   return (
@@ -45,7 +45,7 @@ export default function CardNaver({showDetails, item, setModalItem}) {
             icon="delete"
             color="#212121"
             size={20}
-            onPress={() => console.log('Pressed')}
+            onPress={ () => {setModaIndex(item.id)}}
           />
           <IconButton
             icon="pencil"

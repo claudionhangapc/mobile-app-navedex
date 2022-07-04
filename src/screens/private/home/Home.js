@@ -12,12 +12,29 @@ import * as naverService from '../../../services/naver'
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false)
-  const [showModalDelete, setShowModalDelete] = useState(true)
+  const [showModalDelete, setShowModalDelete] = useState(false)
   const [load, setLoad] = useState(false)
   const navigation = useNavigation();
   const [navers, setNavers] = useState([])
   const [modalItem, setModalItem] = useState({});
+  const [modalItemIndex, setModalItemIndex] = useState('');
+
   //console.log(axiosInstance.defaults.headers.common["Authorization"])
+  
+   const setModalIemIndexAndOpen = (id) => {
+
+    setModalItemIndex(id)
+    setShowModalDelete(true)
+  }
+
+  const deleteNaverItem = (id) => {
+    const newNavers = [... navers]
+    const index = newNavers.findIndex(naver => naver.id ===id)
+    newNavers.splice(index,1)
+    setNavers(newNavers)
+   
+  }
+
 
   useEffect(()=>{
     const fetchNaver = async ()=>{
@@ -53,6 +70,8 @@ export default function Home() {
         <ModalDeleteNaver
         showModal = {showModalDelete}
         setShowModal = {setShowModalDelete}
+        index = {modalItemIndex}
+        deleteNaverItem = {deleteNaverItem }
         />
       </View>
 
@@ -89,6 +108,7 @@ export default function Home() {
         showDetails ={setShowModal} 
         item = {item}
         setModalItem = {setModalItem}
+        setModaIndex = { setModalIemIndexAndOpen}
 
       />)}
       data={navers}

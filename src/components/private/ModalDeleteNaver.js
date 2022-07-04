@@ -3,8 +3,9 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, Modal, TouchableWithou
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton, Colors } from 'react-native-paper';
 import { useState } from 'react';
+import * as naverService from '../../services/naver'
 
-const ModalDeleteContainer = ()=>{
+const ModalDeleteContainer = ({onPress, deleteNaver})=>{
   return (
     <View style={styles.main}>
       <View style={styles.containerModalInfo}>
@@ -19,12 +20,17 @@ const ModalDeleteContainer = ()=>{
         </Text>
       </View>
       <View style={styles.viewAction}>
-        <TouchableOpacity style={styles.buttonCancel}>
+        <TouchableOpacity 
+          style={styles.buttonCancel}
+          onPress={onPress}
+          >
           <Text style={styles.buttonCancelText}>
             cancelar
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonDelete}>
+        <TouchableOpacity 
+        onPress={deleteNaver}
+        style={styles.buttonDelete}>
           <Text style={styles.buttonDeleteText}>
             Excluir
           </Text>
@@ -54,12 +60,27 @@ const ModalDeleteFeedBack = ()=>{
   )
 }
 
-export default function CardNaver({showModal, setShowModal, item}) {
+export default function ModalDeleteNaver({showModal, setShowModal, index, deleteNaverItem }) {
   //const [showModal, setShowModal] = useState(true)
   const [deleted, setDeleted] = useState(false)
+
   const onPress = () => {
+    setDeleted(false)
     setShowModal(false)
   };
+
+  const deleteNaver = async () => {
+    try {
+      const result  = await naverService.deleteNaver(index)
+      deleteNaverItem(index)
+      setDeleted(true) 
+      
+    } catch (error) {
+      console.log(error)
+    }
+    //console.log("ola, bom dia")  
+  }
+
   return (
       
         <View  style={{
@@ -78,8 +99,8 @@ export default function CardNaver({showModal, setShowModal, item}) {
         >
           <View style={styles.containerModal}>
             {deleted
-              ?<ModalDeleteFeedBack/> 
-              :<ModalDeleteContainer/>   
+              ?<ModalDeleteFeedBack /> 
+              :<ModalDeleteContainer onPress={onPress} deleteNaver={deleteNaver} />   
             }
           </View>
           </TouchableWithoutFeedback>
