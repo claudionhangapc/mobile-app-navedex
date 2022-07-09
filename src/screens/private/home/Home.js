@@ -30,7 +30,7 @@ export default function Home() {
   }
 
   const deleteNaverItem = (id) => {
-    const newNavers = [... navers]
+    const newNavers = [...navers]
     const index = newNavers.findIndex(naver => naver.id ===id)
     newNavers.splice(index,1)
     setNavers(newNavers)
@@ -39,16 +39,21 @@ export default function Home() {
 
 
  useEffect(()=>{
+  let mounted = true;
     const fetchNaver = async ()=>{
       setLoad(true)
       try {
-        await fetchNavers()
+        if( mounted){ 
+          await fetchNavers()
+
+          }
         //console.log(navers)
       } catch (error) {
         console.log(error)
       }
 
       setLoad(false)
+      return () => mounted = false;
     }
 
     fetchNaver()

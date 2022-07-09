@@ -7,7 +7,7 @@ const initialState = []
 const reducer = (state = initialState, action)=>{
   switch(action.type){
     case "ADD":{
-      const navers = [...initialState]
+      const navers = [...state]
             navers.push(action.naver)
       return navers;
     }
@@ -38,6 +38,13 @@ export const NaverProvider = ({children})=>{
     
   }
 
+  const create = (naver)=>{
+    dispatch({
+      type:'ADD',
+      naver:naver,    
+    })
+  }
+
   /*React.useEffect(() => { 
     const bootstrapAsync = async () => {
       fetchNavers()
@@ -48,7 +55,7 @@ export const NaverProvider = ({children})=>{
   }, []); */
 
   return(
-    <NaverContext.Provider value={{state, fetchNavers}}>
+    <NaverContext.Provider value={{state, fetchNavers, create}}>
       {children}
     </NaverContext.Provider>
   )

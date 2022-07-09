@@ -8,15 +8,19 @@ import DatePickerGeneral from '../../../components/DatePickerGeneral'
 import styles from './add.page.style'
 import { useNavigation } from '@react-navigation/native';
 
-import { useState } from 'react';
+import { useState,  useContext } from 'react';
 import helpers from '../../../helpers/index'
 import validator from 'validator';
 import * as naverService from '../../../services/naver'
 
 import ModalAddNaver from '../../../components/private/ModalAddNaver'
 
+import NaverContext from '../../../contexts/naver';
+
 //https://claudionhangapc.com/projetos/navedex/img/Juliano.png
 export default function Add() {
+
+  const {create} = useContext(NaverContext)
   const navigation = useNavigation();
   const [sendData, setSendData] = useState(false);
   const [error, setError] = useState(false)
@@ -115,9 +119,10 @@ export default function Add() {
     try {
       setError(false)
       const result = await naverService.createNaver(data)
+      create(result)
       setShowModal(true)
       resetAllState()
-      //console.log(result) 
+      console.log(result) 
     } catch (error) {
       console.log(error)
       setErrorMessage(error.message)
