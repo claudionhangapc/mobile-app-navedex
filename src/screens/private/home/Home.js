@@ -12,7 +12,7 @@ import * as naverService from '../../../services/naver'
 import NaverContext from '../../../contexts/naver';
 
 export default function Home() {
-  const {state:navers} = useContext(NaverContext)
+  const {state:navers, fetchNavers} = useContext(NaverContext)
   const [showModal, setShowModal] = useState(false)
   const [showModalDelete, setShowModalDelete] = useState(false)
   const [load, setLoad] = useState(false)
@@ -38,13 +38,11 @@ export default function Home() {
   }
 
 
- /* useEffect(()=>{
+ useEffect(()=>{
     const fetchNaver = async ()=>{
       setLoad(true)
       try {
-        const result  = await naverService.navers()
-        setNavers(result)
-        
+        await fetchNavers()
         //console.log(navers)
       } catch (error) {
         console.log(error)
@@ -56,7 +54,7 @@ export default function Home() {
     fetchNaver()
 
     
-  },[]) */
+  },[]) 
   
   return (
     <View style={styles.container}>

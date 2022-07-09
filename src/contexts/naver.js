@@ -38,17 +38,17 @@ export const NaverProvider = ({children})=>{
     
   }
 
-  React.useEffect(() => { 
+  /*React.useEffect(() => { 
     const bootstrapAsync = async () => {
       fetchNavers()
     }
 
     bootstrapAsync()
 
-  }, []);
+  }, []); */
 
   return(
-    <NaverContext.Provider value={{state}}>
+    <NaverContext.Provider value={{state, fetchNavers}}>
       {children}
     </NaverContext.Provider>
   )
