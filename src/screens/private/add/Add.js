@@ -71,6 +71,7 @@ export default function Add() {
   const handleErrorGeneralText = (value, setError)=>{
     if(validator.isEmpty(value) || validator.isNumeric(value)){
       setError(true)
+      setSendData(false)
     }else{
       setError(false)
     }
@@ -157,7 +158,7 @@ export default function Add() {
             icon="arrow-left"
             color="#212121"
             size={20}
-            onPress={() => navigation.goBack()}
+            onPress={() => navigation.navigate('Home')}
             />
           <Text style={styles.title}>
             Adicionar Naver
