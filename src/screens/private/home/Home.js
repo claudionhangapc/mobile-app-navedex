@@ -6,16 +6,18 @@ import CardNaver from '../../../components/private/CardNaver'
 import ModalShowDetails from '../../../components/private/ModalShowDetails'
 import ModalDeleteNaver from '../../../components/private/ModalDeleteNaver'
 import ModalUpdateNaver from '../../../components/private/ModalUpdateNaver'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import * as naverService from '../../../services/naver'
+import NaverContext from '../../../contexts/naver';
 
 export default function Home() {
+  const {state:navers} = useContext(NaverContext)
   const [showModal, setShowModal] = useState(false)
   const [showModalDelete, setShowModalDelete] = useState(false)
   const [load, setLoad] = useState(false)
   const navigation = useNavigation();
-  const [navers, setNavers] = useState([])
+  //const [navers, setNavers] = useState([])
   const [modalItem, setModalItem] = useState({});
   const [modalItemIndex, setModalItemIndex] = useState('');
 
@@ -36,7 +38,7 @@ export default function Home() {
   }
 
 
-  useEffect(()=>{
+ /* useEffect(()=>{
     const fetchNaver = async ()=>{
       setLoad(true)
       try {
@@ -54,7 +56,7 @@ export default function Home() {
     fetchNaver()
 
     
-  },[])
+  },[]) */
   
   return (
     <View style={styles.container}>
