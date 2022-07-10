@@ -51,7 +51,7 @@ export default function CardNaver({showDetails, item, setModalItem,setModaIndex}
             icon="pencil"
             color="#212121"
             size={20}
-            onPress={() => navigation.navigate('Editar')}
+            onPress={() => navigation.navigate('Editar',{naverId:item.id})}
           />
         </View>
        

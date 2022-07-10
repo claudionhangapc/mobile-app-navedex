@@ -61,7 +61,7 @@ export const NaverProvider = ({children})=>{
   }
 
   const filterNaver = (id)=>{
-    index = state.findIndex(naver => naver.id ===id)
+    const index = state.findIndex(naver => naver.id === id)
     return state[index]
   }
 

@@ -1,4 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
+import * as React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ScrollView, ActivityIndicator  } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { IconButton, Colors } from 'react-native-paper';
@@ -18,9 +19,9 @@ import ModalAddNaver from '../../../components/private/ModalAddNaver'
 import NaverContext from '../../../contexts/naver';
 
 //https://claudionhangapc.com/projetos/navedex/img/Juliano.png
-export default function  Edit() {
+export default function  Edit({route}) {
 
-  const {create} = useContext(NaverContext)
+  const {create, filterNaver} = useContext(NaverContext)
   const navigation = useNavigation();
   const [sendData, setSendData] = useState(false);
   const [error, setError] = useState(false)
@@ -140,6 +141,33 @@ export default function  Edit() {
     setUrl('')
     setDataAdmissao('')
     setDataNascimento('')
+  }
+
+
+  React.useEffect(() => { 
+   
+    const id = route.params.naverId;
+    
+    const naver =  filterNaver(id);
+    
+    setNome(naver.name) 
+    setCargo(naver.job_role) 
+    setUrl(naver.url) 
+    setProjeto(naver.project) 
+    setDataAdmissao(formatDate(naver.admission_date))
+    setDataNascimento(formatDate(naver.birthdate))
+
+  }, []);
+
+  const formatDate = (date) => {
+   
+    if (!date) return null
+    
+    const [year, month, day] = date.split('-')
+    const [onlyDay,onlyTime] =  day.split('T')
+    
+    return `${onlyDay}-${month}-${year}`
+    
   }
 
   return (
