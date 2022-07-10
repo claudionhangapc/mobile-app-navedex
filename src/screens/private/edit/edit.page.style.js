@@ -17,6 +17,16 @@ export default StyleSheet.create({
     color: '#212121',
     fontWeight: '600',
     fontSize: 24,
-  }
+  },
+  errorView:{
+    width:'100%',
+    marginBottom:32,
+    backgroundColor:'#FF5252',
+    padding:8,
+    height:40,
+  },
+  errortext:{
+    color:'#212121'
+  },
  
 })
