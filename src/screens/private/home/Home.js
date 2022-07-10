@@ -12,7 +12,7 @@ import * as naverService from '../../../services/naver'
 import NaverContext from '../../../contexts/naver';
 
 export default function Home() {
-  const {state:navers, fetchNavers} = useContext(NaverContext)
+  const {state:navers, fetchNavers, deleteNaver} = useContext(NaverContext)
   const [showModal, setShowModal] = useState(false)
   const [showModalDelete, setShowModalDelete] = useState(false)
   const [load, setLoad] = useState(false)
@@ -30,11 +30,7 @@ export default function Home() {
   }
 
   const deleteNaverItem = (id) => {
-    const newNavers = [...navers]
-    const index = newNavers.findIndex(naver => naver.id ===id)
-    newNavers.splice(index,1)
-    setNavers(newNavers)
-   
+    deleteNaver(id)
   }
 
 

@@ -14,7 +14,15 @@ const reducer = (state = initialState, action)=>{
     case "SET":{
        return [...action.naver]
     }
-      
+
+    case "DELETE":{
+      //return [...action.naver]
+      const navers = [...state]
+      const index = navers.findIndex(naver => naver.id ===action.id)
+      navers.splice(index,1)
+      return navers
+   }
+    
   } 
 
 }
@@ -45,17 +53,15 @@ export const NaverProvider = ({children})=>{
     })
   }
 
-  /*React.useEffect(() => { 
-    const bootstrapAsync = async () => {
-      fetchNavers()
-    }
-
-    bootstrapAsync()
-
-  }, []); */
+  const deleteNaver = (id)=>{
+    dispatch({
+      type:'DELETE',
+      id:id,    
+    })
+  }
 
   return(
-    <NaverContext.Provider value={{state, fetchNavers, create}}>
+    <NaverContext.Provider value={{state, fetchNavers, create, deleteNaver}}>
       {children}
     </NaverContext.Provider>
   )
