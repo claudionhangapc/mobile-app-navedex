@@ -60,8 +60,13 @@ export const NaverProvider = ({children})=>{
     })
   }
 
+  const filterNaver = (id)=>{
+    index = state.findIndex(naver => naver.id ===id)
+    return state[index]
+  }
+
   return(
-    <NaverContext.Provider value={{state, fetchNavers, create, deleteNaver}}>
+    <NaverContext.Provider value={{state, fetchNavers, create, deleteNaver, filterNaver}}>
       {children}
     </NaverContext.Provider>
   )
