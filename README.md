@@ -4,6 +4,7 @@ APP de um sistema web para visualização e criação dos navers, com autentica�
 # Status do projeto 
 
 - [ ] Em desenvolvimento
+- [x] feito
 
 ## Features🔥
 - Login 
@@ -13,7 +14,7 @@ APP de um sistema web para visualização e criação dos navers, com autentica�
 - Fetch Naver
 
 ##  Telas
-
+<img src="screens.png">
 
 ## Requirements
 - [Node](https://nodejs.org) `6.x` or newer
@@ -24,7 +25,6 @@ APP de um sistema web para visualização e criação dos navers, com autentica�
 
 
 #### 1. Installation
-<img src="screens.png">
 
 No prompt de comando execute os seguintes comandos
 
