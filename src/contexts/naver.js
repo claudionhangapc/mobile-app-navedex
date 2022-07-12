@@ -29,7 +29,7 @@ const reducer = (state = initialState, action)=>{
     const index = navers.findIndex(naver => naver.id ===action.naver.id)
     navers.splice(index,1, action.naver)
     return navers
-  }
+    }
     
   } 
 
@@ -63,8 +63,8 @@ export const NaverProvider = ({children})=>{
 
   const updateNaver = (naver)=>{
     dispatch({
-      type:'ADD',
-      naver:UPDATE,    
+      type:'UPDATE',
+      naver:naver,    
     })
   }
 

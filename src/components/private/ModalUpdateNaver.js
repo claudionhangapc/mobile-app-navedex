@@ -24,11 +24,12 @@ const ModalDeleteFeedBack = ()=>{
   )
 }
 
-export default function CardNaver() {
-  const [showModal, setShowModal] = useState(true)
+export default function CardNaver({showModal, setShowModal}) {
+  //const [showModal, setShowModal] = useState(false)
   const onPress = () => {
     setShowModal(false)
-  };
+  }
+  
   return (
       
         <View  style={{

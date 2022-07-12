@@ -14,14 +14,14 @@ import helpers from '../../../helpers/index'
 import validator from 'validator';
 import * as naverService from '../../../services/naver'
 
-import ModalAddNaver from '../../../components/private/ModalAddNaver'
+import ModalUpdateNaver from '../../../components/private/ModalUpdateNaver'
 
 import NaverContext from '../../../contexts/naver';
 
 //https://claudionhangapc.com/projetos/navedex/img/Juliano.png
 export default function  Edit({route}) {
 
-  const {create, filterNaver} = useContext(NaverContext)
+  const {updateNaver, filterNaver} = useContext(NaverContext)
   const navigation = useNavigation();
   const [sendData, setSendData] = useState(false);
   const [error, setError] = useState(false)
@@ -121,8 +121,9 @@ export default function  Edit({route}) {
       setError(false)
       const id = route.params.naverId;
       const result = await naverService.updateNaver(data, id)
-      //create(result)
       setShowModal(true)
+      updateNaver(result)
+      
       //resetAllState()
       console.log(result) 
     } catch (error) {
@@ -175,7 +176,7 @@ export default function  Edit({route}) {
     <View style={styles.container}>
       <View>
       
-      <ModalAddNaver
+      <ModalUpdateNaver
         showModal={showModal}
         setShowModal = {setShowModal}
       />

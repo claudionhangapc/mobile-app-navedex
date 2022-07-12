@@ -24,7 +24,7 @@ const ModalDeleteFeedBack = ()=>{
   )
 }
 
-export default function ModalAddNaver({showModal, setShowModal,}) {
+export default function ModalAddNaver({showModal, setShowModal}) {
   //const [showModal, setShowModal] = useState(true)
   const onPress = () => {
     setShowModal(false)
