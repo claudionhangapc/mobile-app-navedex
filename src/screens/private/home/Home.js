@@ -56,6 +56,12 @@ export default function Home() {
 
     
   },[]) 
+
+ const deleteNaverItemFromModalDetails = (id) => {
+  setShowModal(false)
+  setShowModalDelete(true)
+  setModalItemIndex(id)
+ }
   
   return (
     <View style={styles.container}>
@@ -64,6 +70,7 @@ export default function Home() {
           showModal={showModal}
           setShowModal={setShowModal}
           item = {modalItem}
+          deleteNaverItem =  {deleteNaverItemFromModalDetails}
         />
       </View>
 

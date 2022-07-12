@@ -8,7 +8,7 @@ import Image from 'react-native-image-progress';
 import ProgressBar from 'react-native-progress/Bar';
 import { useNavigation } from '@react-navigation/native';
 
-export default function CardNaver({showModal, setShowModal, item}) {
+export default function ModalShowDetails({showModal, setShowModal, item, deleteNaverItem }) {
   //const [showModal, setShowModal] = useState(true)
   //console.log(item)
   const navigation = useNavigation();
@@ -84,7 +84,7 @@ export default function CardNaver({showModal, setShowModal, item}) {
                   icon="delete"
                   color="#212121"
                   size={20}
-                  onPress={() => console.log('Pressed')}
+                  onPress={() => deleteNaverItem(item.id)}
                 />
                   <IconButton
                     icon="pencil"
