@@ -6,10 +6,12 @@ import { useState } from 'react';
 import helpers from '../../helpers/index'
 import Image from 'react-native-image-progress';
 import ProgressBar from 'react-native-progress/Bar';
+import { useNavigation } from '@react-navigation/native';
 
 export default function CardNaver({showModal, setShowModal, item}) {
   //const [showModal, setShowModal] = useState(true)
   //console.log(item)
+  const navigation = useNavigation();
   const onPress = () => {
     setShowModal(false)
   };
@@ -88,7 +90,7 @@ export default function CardNaver({showModal, setShowModal, item}) {
                     icon="pencil"
                     color="#212121"
                     size={20}
-                    onPress={() => console.log('Pressed')}
+                    onPress={() => navigation.navigate('Editar',{naverId:item.id})}
                   />
               </View>
 
