@@ -11,9 +11,9 @@ export default function SignIn() {
   const {handleLogin} = useContext(AuthContext)
   const [error, setError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  const [email, setEmail] = useState('testepc@gmail.com')
+  const [email, setEmail] = useState('')
   const [load, setLoad] = useState(false)
-  const [password, setPassword] = useState('nave1234')
+  const [password, setPassword] = useState('')
 
   const signIn = async ()=>{
     setError(false)

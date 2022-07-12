@@ -38,3 +38,13 @@ $ npm install
 $ expo start
 
 ```
+
+#### 2. Login User
+
+```
+user: testepc@gmail.com
+
+password: nave1234
+
+```
+
