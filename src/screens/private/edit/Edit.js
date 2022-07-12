@@ -60,7 +60,7 @@ export default function  Edit({route}) {
     handleDateState(dataAdmissao, setErrorDataAdmissaoState)
 
     if(sendData === true){
-      createNaver()
+      updateNaverMain()
       //alert("sendData")
     }
 
@@ -107,7 +107,7 @@ export default function  Edit({route}) {
 
   }
   
-  const createNaver =  async () => {
+  const updateNaverMain =  async () => {
     setLoad(true)
     const data = {
       job_role:cargo,
