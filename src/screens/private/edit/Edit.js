@@ -119,10 +119,11 @@ export default function  Edit({route}) {
     }
     try {
       setError(false)
-      const result = await naverService.createNaver(data)
-      create(result)
+      const id = route.params.naverId;
+      const result = await naverService.updateNaver(data, id)
+      //create(result)
       setShowModal(true)
-      resetAllState()
+      //resetAllState()
       console.log(result) 
     } catch (error) {
       console.log(error)

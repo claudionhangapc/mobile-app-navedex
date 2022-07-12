@@ -22,6 +22,14 @@ const reducer = (state = initialState, action)=>{
       navers.splice(index,1)
       return navers
    }
+
+   case "UPDATE":{
+    //return [...action.naver]
+    const navers = [...state]
+    const index = navers.findIndex(naver => naver.id ===action.naver.id)
+    navers.splice(index,1, action.naver)
+    return navers
+  }
     
   } 
 
@@ -53,6 +61,13 @@ export const NaverProvider = ({children})=>{
     })
   }
 
+  const updateNaver = (naver)=>{
+    dispatch({
+      type:'ADD',
+      naver:UPDATE,    
+    })
+  }
+
   const deleteNaver = (id)=>{
     dispatch({
       type:'DELETE',
@@ -60,13 +75,15 @@ export const NaverProvider = ({children})=>{
     })
   }
 
+  
+
   const filterNaver = (id)=>{
     const index = state.findIndex(naver => naver.id === id)
     return state[index]
   }
 
   return(
-    <NaverContext.Provider value={{state, fetchNavers, create, deleteNaver, filterNaver}}>
+    <NaverContext.Provider value={{state, fetchNavers, create, deleteNaver, filterNaver, updateNaver}}>
       {children}
     </NaverContext.Provider>
   )

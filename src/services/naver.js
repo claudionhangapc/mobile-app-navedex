@@ -12,8 +12,8 @@ export const createNaver = async (data)=>{
   return res.data
 }
 
-export const updateNaver = async (data)=>{
-  let res = await axios.put(baseURL+'/navers', data)
+export const updateNaver = async (data, id)=>{
+  let res = await axios.put(`${baseURL}/navers/${id}`, data)
   return res.data
 }
 
