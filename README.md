@@ -17,9 +17,9 @@ APP de um sistema web para visualização e criação dos navers, com autentica�
 <img src="screens.png">
 
 ## Requirements
-- [Node](https://nodejs.org) `6.x` or newer
-- [Expo](https://docs.expo.dev/) for development
-- [Android Studio](https://developer.android.com/studio/index.html) for Android development
+- [Node](https://nodejs.org) `6.x` ou  mais recente
+- [Expo](https://docs.expo.dev/) para desenvolvimento
+- [Android Studio](https://developer.android.com/studio/index.html) para desenvolvimento
 
 # Get Started
 
